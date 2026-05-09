@@ -92,6 +92,7 @@ if st.session_state.page == "quiz":
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
+        st.rerun()
        
         
         
