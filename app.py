@@ -103,7 +103,7 @@ if st.session_state.page == "quiz":
         if selected_letter == current_question()["correct_answer"]:
             iscorrect()
             if st.button(Next):
-            st.session_state.q_index +=1
+                st.session_state.q_index +=1
         else:
             st.session_state.iscorrect = False
             st.badge("Incorrect ❌", color = "red")
