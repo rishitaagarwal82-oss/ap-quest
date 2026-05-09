@@ -1,4 +1,8 @@
 import streamlit as st
+st.set_page_config(
+    page_title="AP Quest",
+    page_icon="🎓"
+)
 import pandas as pd
 df= pd.read_csv("questions.csv")
 buttons = ["AP Calculus AB", "AP Calculus BC", "AP Statistics", "AP Computer Science A", "AP Computer Science Principles", "AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2", "AP Physics C: Mechanics", "AP Environmental Science", "AP U.S. History", "AP World History: Modern", "AP European History", "AP Psychology", "AP U.S. Government and Politics", "AP English Language and Composition", "AP English Literature and Composition", "AP Spanish Language and Culture", "AP French Language and Culture"]
@@ -20,6 +24,8 @@ if "page" not in st.session_state:
     st.session_state.page = "home"
 if "last_ap" not in st.session_state:
     st.session_state.last_ap = None
+if "question_num" not in st.session_state:
+    st.session_state.question_num = 0
 
 # FUNCTIONS
 
@@ -97,6 +103,9 @@ if st.session_state.page == "quiz":
 
         if selected_letter == current_question()["correct_answer"]:
             iscorrect()
+            if st.button(Next)
+            st.session_state.question_num += 1
+            st.session_state.q_index +=1
         else:
             st.session_state.iscorrect = False
             st.badge("Incorrect ❌", color = "red")
@@ -123,6 +132,7 @@ if st.session_state.page == "quiz":
         st.session_state.page = "home"
         st.rerun()
 
+    
  
            
     
