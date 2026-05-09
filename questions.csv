@@ -129,3 +129,9 @@ AP French Language,Merci means?,thank you,hello,sorry,goodbye,A,Translation
 AP French Language,Livre means?,book,pen,chair,table,A,Translation
 AP French Language,Manger means?,to eat,to run,to write,to see,A,Translation
 AP French Language,Maison means?,house,car,tree,road,A,Translation
+ap,question,choice_a,choice_b,choice_c,choice_d,correct_answer,explanation
+AP Physics C: Mechanics,A block slides down a frictionless incline. What happens to its acceleration?,Increases,Decreases,Stays constant,Becomes zero,C,Acceleration is constant at g sin(theta) on a frictionless incline.
+AP Physics C: Mechanics,Which quantity is always conserved in an isolated system?,Kinetic energy,Momentum,Speed,Acceleration,B,Total momentum is conserved in the absence of external forces.
+AP Physics C: Mechanics,If net force on an object is zero, what is true?,It is accelerating,It is at rest only,It has constant velocity,It must be slowing down,C,Zero net force means constant velocity (Newton’s First Law).
+AP Physics C: Mechanics,What does the slope of a position-time graph represent?,Acceleration,Velocity,Force,Displacement,B,Slope of position vs time is velocity.
+AP Physics C: Mechanics,Work is equal to which of the following?,Force × distance,Mass × velocity,Force × time,Mass × acceleration,A,Work is defined as force times displacement in the direction of force.
