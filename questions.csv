@@ -9,3 +9,123 @@ AP Biology,What type of bond holds water molecules together?,Ionic bonds,Covalen
 AP Biology,Which level of protein structure is determined by the sequence of amino acids?,Primary structure,Secondary structure,Tertiary structure,Quaternary structure,A,Primary structure refers to the linear amino acid sequence.
 AP Biology,What process produces genetically unique gametes?,Mitosis,Binary fission,Meiosis,Photosynthesis,C,Meiosis reduces chromosome number and increases genetic variation.
 AP Biology,Which evolutionary mechanism results in the survival and reproduction of organisms best adapted to their environment?,Genetic drift,Natural selection,Gene flow,Mutation,B,Natural selection favors traits that improve survival and reproduction.
+
+AP Calculus AB,Derivative of x^2?,x,2x,x^2,2,B,Power rule
+AP Calculus AB,Integral of 1 dx?,x,1,0,undefined,A,Constant rule
+AP Calculus AB,Derivative of sin(x)?,cos(x),-cos(x),sin(x),-sin(x),A,Standard rule
+AP Calculus AB,Limit of 1/x as x→∞?,0,∞,1,undefined,A,Reciprocal goes to 0
+AP Calculus AB,What does integral represent?,area,slope,value,derivative,A,FTOC
+
+AP Calculus BC,Integral of e^x?,e^x,0,1,x,A,Standard rule
+AP Calculus BC,Derivative of tan(x)?,sec^2(x),cos(x),-sin(x),sec(x),A,Trig rule
+AP Calculus BC,Maclaurin series centered at?,0,1,-1,∞,A,Definition
+AP Calculus BC,Integral of 1/x?,ln|x|,x,1/x,0,A,Log rule
+AP Calculus BC,Convergent series means?,finite limit,diverges,oscillates,undefined,A,Definition
+
+AP Statistics,Mean measures?,center,spread,variance,probability,A,Definition
+AP Statistics,Standard deviation measures?,spread,center,median,mode,A,Definition
+AP Statistics,Probability range?,0-1,1-10,-1-1,0-100,A,Definition
+AP Statistics,Median is?,middle value,average,sum,mode,A,Definition
+AP Statistics,Correlation measures?,relationship,mean,variance,distribution,A,Definition
+
+AP Computer Science A,Array is?,collection,single variable,function,class,A,Definition
+AP Computer Science A,Class is?,blueprint,object,method,loop,A,Definition
+AP Computer Science A,Loop is?,repetition,decision,function,object,A,Definition
+AP Computer Science A,Object is?,instance,class,method,variable,A,Definition
+AP Computer Science A,Boolean is?,true/false,int,string,double,A,Definition
+
+AP Computer Science Principles,Algorithm is?,steps,bug,variable,loop,A,Definition
+AP Computer Science Principles,Binary uses?,0 and 1,letters,words,colors,A,Definition
+AP Computer Science Principles,Internet is?,network,computer,software,code,A,Definition
+AP Computer Science Principles,Cloud computing is?,remote servers,local PC,CPU,RAM,A,Definition
+AP Computer Science Principles,Abstraction means?,simplifying data,adding data,removing data,encrypting,A,Concept
+
+AP Biology,DNA stores?,genetic info,energy,proteins,lipids,A,Definition
+AP Biology,Photosynthesis occurs in?,chloroplast,mitochondria,nucleus,cytoplasm,A,Definition
+AP Biology,ATP is?,energy molecule,DNA,RNA,protein,A,Definition
+AP Biology,Mitosis produces?,identical cells,gametes,bacteria,mutations,A,Definition
+AP Biology,Enzymes are?,proteins,lipids,DNA,RNA,A,Definition
+
+AP Chemistry,Atomic number is?,protons,neutrons,electrons,mass,A,Definition
+AP Chemistry,pH measures?,acidity,temperature,pressure,mass,A,Definition
+AP Chemistry,Covalent bond shares?,electrons,protons,neutrons,ions,A,Definition
+AP Chemistry,Exothermic reaction?,releases heat,absorbs heat,neutral,none,A,Definition
+AP Chemistry,Oxidation is?,loss of electrons,gain,neutral,none,A,Definition
+
+AP Physics 1,Force equals?,ma,mv,mg,m/a,A,Newton’s 2nd law
+AP Physics 1,Velocity is?,speed with direction,force,acceleration,mass,A,Definition
+AP Physics 1,Acceleration is?,change in velocity,position,mass,force,A,Definition
+AP Physics 1,Energy unit?,joule,newton,watt,pascal,A,Definition
+AP Physics 1,Gravity on Earth?,9.8 m/s²,10 m/s²,8.9 m/s²,12 m/s²,A,Constant
+
+AP Physics 2,Pressure formula?,F/A,mv,ma,ρv,A,Definition
+AP Physics 2,Electric current unit?,ampere,volt,ohm,watt,A,Definition
+AP Physics 2,Wave speed equals?,fλ,ma,force/time,energy,A,Wave equation
+AP Physics 2,Refraction is?,bending light,reflection,absorption,emission,A,Definition
+AP Physics 2,Heat transfer by fluid?,convection,conduction,radiation,friction,A,Definition
+
+AP Physics C Mechanics,Newton’s law?,F=ma,E=mc²,v=at,KE=mv,A,Fundamental
+AP Physics C Mechanics,Work formula?,F·d,ma,ρv,mc²,A,Definition
+AP Physics C Mechanics,Momentum is?,mv,ma,F/d,E/A,A,Definition
+AP Physics C Mechanics,Impulse equals?,change in momentum,force,time,energy,A,Definition
+AP Physics C Mechanics,Kinetic energy?,½mv²,mv,ma,Fd,A,Definition
+
+AP Environmental Science,Climate change driven by?,CO2,salt,oxygen,nitrogen,A,Definition
+AP Environmental Science,Renewable energy?,solar,coal,oil,gas,A,Definition
+AP Environmental Science,Ozone layer protects?,UV rays,heat,wind,water,A,Definition
+AP Environmental Science,Ecosystem includes?,organisms + environment,only animals,only plants,air,A,Definition
+AP Environmental Science,Biodiversity means?,variety of life,weather,climate,soil,A,Definition
+
+AP US History,Declaration signed in?,1776,1492,1812,1865,A,Fact
+AP US History,Civil War ended?,1865,1776,1914,1945,A,Fact
+AP US History,Cold War was between?,US and USSR,US and UK,France and Germany,China and Japan,A,Fact
+AP US History,New Deal was by?,FDR,Lincoln,Reagan,Bush,A,Fact
+AP US History,Industrial Revolution increased?,production,war,poverty,trade only,A,Fact
+
+AP World History,Feudalism was in?,medieval Europe,modern US,ancient China only,Africa only,A,Fact
+AP World History,Silk Road traded?,goods,culture,ideas,all of above,D,Fact
+AP World History,WWI started in?,1914,1776,1945,1800,A,Fact
+AP World History,Industrialization began in?,Britain,China,India,Africa,A,Fact
+AP World History,Colonialism is?,control of regions,trade only,war only,peace,A,Definition
+
+AP European History,Renaissance began in?,Italy,France,Germany,Spain,A,Fact
+AP European History,Reformation led by?,Luther,Newton,Churchill,Da Vinci,A,Fact
+AP European History,WWII ended in?,1945,1918,1776,1800,A,Fact
+AP European History,Enlightenment focused on?,reason,war,religion only,economy,A,Concept
+AP European History,Industrial Revolution started in?,Britain,USA,France,Italy,A,Fact
+
+AP Psychology,Memory stores?,information,energy,protein,water,A,Definition
+AP Psychology,Neuron is?,nerve cell,blood cell,skin cell,bone cell,A,Definition
+AP Psychology,Freud studied?,unconscious mind,physics,biology,math,A,Fact
+AP Psychology,Classical conditioning?,learning by association,math rule,physics law,biology,A,Definition
+AP Psychology,Brain controls?,behavior,weather,gravity,chemistry,A,Fact
+
+AP US Government,Branch that makes laws?,legislative,executive,judicial,local,A,Definition
+AP US Government,President is?,executive,legislative,judicial,citizen,A,Definition
+AP US Government,Constitution is?,law of US,book,essay,treaty,A,Definition
+AP US Government,Checks and balances?,limit power,expand power,remove laws,create war,A,Concept
+AP US Government,Amendment is?,change to Constitution,new law,war rule,tax rule,A,Definition
+
+AP English Language,Thesis is?,main argument,summary,quote,example,A,Definition
+AP English Language,Rhetoric is?,persuasion,math,science,grammar,A,Definition
+AP English Language,Tone is?,attitude,topic,grammar,structure,A,Definition
+AP English Language,Evidence supports?,claim,style,format,title,A,Concept
+AP English Language,Audience is?,readers,writer,teacher,book,A,Definition
+
+AP English Literature,Theme is?,central idea,plot,character,grammar,A,Definition
+AP English Literature,Metaphor is?,comparison,definition,grammar rule,plot,A,Definition
+AP English Literature,Protagonist is?,main character,villain,narrator,reader,A,Definition
+AP English Literature,Symbol represents?,idea,word,sentence,grammar,A,Concept
+AP English Literature,Conflict is?,problem,solution,theme,title,A,Definition
+
+AP Spanish Language,Hola means?,hello,goodbye,please,thanks,A,Translation
+AP Spanish Language,Gracias means?,thank you,hello,bye,sorry,A,Translation
+AP Spanish Language,Libro means?,book,pen,table,chair,A,Translation
+AP Spanish Language,Comer means?,to eat,to run,to write,to see,A,Translation
+AP Spanish Language,Casa means?,house,car,tree,road,A,Translation
+
+AP French Language,Bonjour means?,hello,bye,please,thanks,A,Translation
+AP French Language,Merci means?,thank you,hello,sorry,goodbye,A,Translation
+AP French Language,Livre means?,book,pen,chair,table,A,Translation
+AP French Language,Manger means?,to eat,to run,to write,to see,A,Translation
+AP French Language,Maison means?,house,car,tree,road,A,Translation

@@ -61,7 +61,7 @@ if st.session_state.page == "quiz":
     
     
     
-    st.write(current_question()["question"])
+    st.header(current_question()["question"])
 
     answer = st.radio(
     "Choose an answer:",
