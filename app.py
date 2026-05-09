@@ -26,7 +26,7 @@ if "last_ap" not in st.session_state:
 def iscorrect():
     st.session_state.iscorrect = True
     st.badge("Correct ✅", color = "green")        
-    st.write("Explanation:", current_question["explanation"])
+    st.write("Explanation:", current_question()["explanation"])
     st.session_state.correct_items+=1
     
 
@@ -50,6 +50,8 @@ if st.session_state.page == "quiz":
     disabled = st.session_state.submitted and st.session_state.iscorrect is True
     st.title( st.session_state.ap + " style questions")     
     ap_questions = df[df["ap"] == st.session_state.ap]
+    def current_question():
+        return ap_questions.iloc[st.session_state.q_index] 
     if "q_index" not in st.session_state:
         st.session_state.q_index = 0
     if "last_q" not in st.session_state:
@@ -59,21 +61,22 @@ if st.session_state.page == "quiz":
         st.session_state.iscorrect = None
         st.session_state.last_q = st.session_state.q_index
     
-    current_question = ap_questions.iloc[st.session_state.q_index]  
     
-    st.write(current_question["question"])
+    
+    st.write(current_question()["question"])
 
     answer = st.radio(
     "Choose an answer:",
     [
-        f"A — {current_question['choice_a']}",
-        f"B — {current_question['choice_b']}",
-        f"C — {current_question['choice_c']}",
-        f"D — {current_question['choice_d']}",
+        f"A — {current_question()['choice_a']}",
+        f"B — {current_question()['choice_b']}",
+        f"C — {current_question()['choice_c']}",
+        f"D — {current_question()['choice_d']}",
     ],
     disabled=disabled
     
     )
+    selected_letter = answer[0]
  
 
     
@@ -92,7 +95,7 @@ if st.session_state.page == "quiz":
  
  # RESULTS
 
-        if answer == current_question["correct_answer"]:
+        if selected_letter == current_question()["correct_answer"]:
             iscorrect()
         else:
             st.session_state.iscorrect = False
