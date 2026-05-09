@@ -104,6 +104,9 @@ if st.session_state.page == "quiz":
             iscorrect()
             if st.button("Next"):
                 st.session_state.q_index +=1
+                st.session_state.iscorrect = None
+                st.session_state.submitted = False
+                st.rerun()
         else:
             st.session_state.iscorrect = False
             st.badge("Incorrect ❌", color = "red")
