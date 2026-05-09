@@ -28,6 +28,7 @@ def iscorrect():
     st.badge("Correct ✅", color = "green")        
     st.write("Explanation:", current_question["explanation"])
     st.session_state.correct_items+=1
+    disabled = st.session_state.submitted 
 
 # HOME AND QUIZ PAGES
 
@@ -68,16 +69,17 @@ if st.session_state.page == "quiz":
         f"B — {current_question['choice_b']}",
         f"C — {current_question['choice_c']}",
         f"D — {current_question['choice_d']}",
-    ],
-    disabled=st.session_state.submitted,
+    ]
+    
     )
  
 
     
  # SUBMISSION
 
-    if st.button("Submit", disabled = st.session_state.submitted):
+    if st.button("Submit"):
         st.session_state.submitted = True
+        disabled = st.session_state.submitted
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
