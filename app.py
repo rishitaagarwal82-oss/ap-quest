@@ -27,12 +27,6 @@ if "last_ap" not in st.session_state:
 if "correct_index" not in st.session_state:
     st.session_state.correct_index = set()
 
-
-# FUNCTIONS
-
-
-    
-
 # HOME AND QUIZ PAGES
 
 if st.session_state.page =="home":
@@ -85,44 +79,43 @@ if st.session_state.page == "quiz":
     
  # SUBMISSION
 
-    if st.button("Submit"):
+    if st.button("Submit") and not st.session_state.submitted:
         st.session_state.submitted = True
+        if selected_letter == current_question()["correct_answer"]:
+            st.session_state.iscorrect = True
         
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
         st.write("Questions Answered:", st.session_state.questions_answered)
+        else: 
+            st.session_state.iscorrect = False
         
         
         
  
  # RESULTS
-
-        if selected_letter == current_question()["correct_answer"]:
-            st.session_state.iscorrect = True
+    if st.session_state.submitted:
+        if st.session_state.iscorrect == True:
             st.badge("Correct ✅", color = "green")        
             st.write("Explanation:", current_question()["explanation"])
-            if st.session_state.q_index != st.session_state.correct_index:
+            if st.session_state.q_index not in st.session_state.correct_index:
                 st.session_state.correct_items+=1
                 st.session_state.correct_index.add(st.session_state.q_index)
-    
             if st.button("Next"):
                 st.session_state.q_index +=1
                 st.session_state.iscorrect = None
                 st.session_state.submitted = False
                 st.rerun()
-        else:
-            st.session_state.iscorrect = False
+        elif st.session_state.iscorrect == False:
             st.badge("Incorrect ❌", color = "red")
-        st.write("Correct questions:", st.session_state.correct_items)
 
- # RETRY
-
-    if st.session_state.iscorrect is False and st.session_state.submitted:
-        if st.button("Try again"):
+            if st.button("Try again"):
                 st.session_state.submitted = False
                 st.session_state.iscorrect = None
                 st.rerun()
+        st.write("Correct questions:", st.session_state.correct_items)
+        
 
  # RESET AND CHANGE QUIZZES
     
