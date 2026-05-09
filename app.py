@@ -24,8 +24,7 @@ if "page" not in st.session_state:
     st.session_state.page = "home"
 if "last_ap" not in st.session_state:
     st.session_state.last_ap = None
-if "question_num" not in st.session_state:
-    st.session_state.question_num = 0
+
 
 # FUNCTIONS
 
@@ -103,8 +102,7 @@ if st.session_state.page == "quiz":
 
         if selected_letter == current_question()["correct_answer"]:
             iscorrect()
-            if st.button(Next)
-            st.session_state.question_num += 1
+            if st.button(Next):
             st.session_state.q_index +=1
         else:
             st.session_state.iscorrect = False
