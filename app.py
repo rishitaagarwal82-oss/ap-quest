@@ -88,8 +88,7 @@ if st.session_state.page == "quiz":
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
-        st.write("Questions Answered:", st.session_state.questions_answered)
-        
+       
         
         
  
@@ -114,6 +113,8 @@ if st.session_state.page == "quiz":
                 st.session_state.iscorrect = None
                 st.rerun()
         st.write("Correct questions:", st.session_state.correct_items)
+        st.write("Questions Answered:", st.session_state.questions_answered)
+        
         
 
  # RESET AND CHANGE QUIZZES
