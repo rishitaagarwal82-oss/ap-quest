@@ -4,7 +4,8 @@ df= pd.read_csv("questions.csv")
 buttons = ["AP Calculus AB", "AP Calculus BC", "AP Statistics", "AP Computer Science A", "AP Computer Science Principles", "AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2", "AP Physics C: Mechanics", "AP Environmental Science", "AP U.S. History", "AP World History: Modern", "AP European History", "AP Psychology", "AP U.S. Government and Politics", "AP English Language and Composition", "AP English Literature and Composition", "AP Spanish Language and Culture", "AP French Language and Culture"]
 
 # DEFINE VARIABLES
-
+if "answered_index" not in st.session_state:
+    st.session_state.answered_index = set()
 if "correct_items" not in st.session_state:
     st.session_state.correct_items = 0
 if "questions_answered" not in st.session_state:
@@ -45,30 +46,44 @@ if st.session_state.page =="home":
 # RENDER CSV DATA
 
 if st.session_state.page == "quiz":
-    
     st.title( st.session_state.ap + " style questions")     
     ap_questions = df[df["ap"] == st.session_state.ap]
     if "q_index" not in st.session_state:
         st.session_state.q_index = 0
+    if "last_q" not in st.session_state:
+        st.session_state.last_q = None
+    if st.session_state.q_index != st.session_state.last_q:
+        st.session_state.submitted = False
+        st.session_state.iscorrect = None
+        st.session_state.last_q = st.session_state.q_index
+    
     current_question = ap_questions.iloc[st.session_state.q_index]  
-    disabled = st.session_state.submitted
-    st.write(current_question["question"])  
-    st.write("A:",current_question["choice_a"])   
-    st.write("B:",current_question["choice_b"])  
-    st.write("C:",current_question["choice_c"])  
-    st.write("D:",current_question["choice_d"]) 
+    
+    st.write(current_question["question"])
+    st.write(f"A. {current_question['choice_a']}")
+    st.write(f"B. {current_question['choice_b']}")
+    st.write(f"C. {current_question['choice_c']}")
+    st.write(f"D. {current_question['choice_d']}")
+   
     answer = st.radio(
-        "choose an answer:",
-        ["A","B","C","D"],
-        disabled=disabled
-    ) 
+    "Choose an answer:",
+    ["A", "B", "C", "D"],
+    disabled=st.session_state.submitted
+    )
  
+
+    
  # SUBMISSION
 
-    if st.button("submit"):
+    if st.button("Submit", disabled = st.session_state.submitted):
         st.session_state.submitted = True
-        st.session_state.questions_answered +=1
-        st.write("Questions answered:", st.session_state.questions_answered)
+        if st.session_state.q_index not in st.session_state.answered_index:
+            st.session_state.questions_answered +=1
+            st.session_state.answered_index.add(st.session_state.q_index)
+        st.write("Questions Answered:", st.session_state.questions_answered)
+        
+        
+        
  
  # RESULTS
 
@@ -81,7 +96,7 @@ if st.session_state.page == "quiz":
 
  # RETRY
 
-    if st.session_state.iscorrect == False:
+    if st.session_state.iscorrect is False and st.session_state.submitted:
         if st.button("Try again"):
                 st.session_state.submitted = False
                 st.session_state.iscorrect = None
