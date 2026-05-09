@@ -60,11 +60,7 @@ if st.session_state.page == "quiz":
     current_question = ap_questions.iloc[st.session_state.q_index]  
     
     st.write(current_question["question"])
-    st.write(f"A. {current_question['choice_a']}")
-    st.write(f"B. {current_question['choice_b']}")
-    st.write(f"C. {current_question['choice_c']}")
-    st.write(f"D. {current_question['choice_d']}")
-   
+
     answer = st.radio(
     "Choose an answer:",
     [
