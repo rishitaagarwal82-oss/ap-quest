@@ -24,6 +24,8 @@ if "page" not in st.session_state:
     st.session_state.page = "home"
 if "last_ap" not in st.session_state:
     st.session_state.last_ap = None
+if "correct_index" not in st.session_state:
+    st.session_state.correct_index = set()
 
 
 # FUNCTIONS
@@ -32,7 +34,9 @@ def iscorrect():
     st.session_state.iscorrect = True
     st.badge("Correct ✅", color = "green")        
     st.write("Explanation:", current_question()["explanation"])
-    st.session_state.correct_items+=1
+    if st.session_state.q_index != st.session_state.correct_index:
+        st.session_state.correct_items+=1
+        st.session_state.q_index.add(st.session_state.correct_index)
     
 
 # HOME AND QUIZ PAGES
