@@ -81,7 +81,7 @@ if st.session_state.page == "quiz":
 
  # RETRY
 
-    if st.session_state.submitted and st.session_state.iscorrect is False:
+    if st.session_state.iscorrect == False:
         if st.button("Try again"):
                 st.session_state.submitted = False
                 st.session_state.iscorrect = None
