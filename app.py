@@ -72,7 +72,7 @@ if st.session_state.page == "quiz":
  
  # RESULTS
 
-        if answer == current_question["answer"]:
+        if answer == current_question["correct_answer"]:
             iscorrect()
         else:
             st.session_state.iscorrect = False
