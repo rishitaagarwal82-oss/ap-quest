@@ -17,4 +17,8 @@ if st.session_state.page == "quiz":
     st.title( st.session_state.ap + " style questions")            
     if st.button("Back"):
         st.session_state.page = "home"
+<<<<<<< HEAD
         st.rerun()
+=======
+        st.rerun()
+>>>>>>> 04f95d7f7be1b809920396bdccf2ea0f41da450b
