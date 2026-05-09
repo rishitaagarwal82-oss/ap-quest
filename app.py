@@ -83,12 +83,11 @@ if st.session_state.page == "quiz":
         st.session_state.submitted = True
         if selected_letter == current_question()["correct_answer"]:
             st.session_state.iscorrect = True
-        
+        else: 
+            st.session_state.iscorrect = False
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
-        else: 
-            st.session_state.iscorrect = False
         st.write("Questions Answered:", st.session_state.questions_answered)
         
         
