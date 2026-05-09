@@ -83,8 +83,8 @@ if st.session_state.page == "quiz":
     if st.button("Submit") and not st.session_state.submitted:
         st.session_state.submitted = True
         is_correct = selected_letter == current_question()["correct_answer"]
-        if st.session_state.q_index not in st.session_state.first_try_result:
-            st.session_state.first_try_result[st.session_state.q_index] = is_correct
+        if st.session_state.q_index not in st.session_state.first_try:
+            st.session_state.first_try[st.session_state.q_index] = is_correct
             if is_correct:
                 st.session_state.correct_items+=1
         st.session_state.iscorrect = is_correct
