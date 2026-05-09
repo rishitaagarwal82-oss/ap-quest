@@ -71,7 +71,7 @@ if st.session_state.page == "quiz":
         f"C — {current_question()['choice_c']}",
         f"D — {current_question()['choice_d']}",
     ],
-    disabled=disabled
+     disabled=st.session_state.submitted
     
     )
     selected_letter = answer[0]
@@ -80,7 +80,7 @@ if st.session_state.page == "quiz":
     
  # SUBMISSION
 
-    if st.button("Submit") and not st.session_state.submitted:
+    if st.button("Submit",disabled=st.session_state.submitted) and not st.session_state.submitted:
         st.session_state.submitted = True
         is_correct = selected_letter == current_question()["correct_answer"]
         if st.session_state.q_index not in st.session_state.first_try:
