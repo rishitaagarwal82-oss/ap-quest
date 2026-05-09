@@ -71,8 +71,8 @@ if st.session_state.page == "quiz":
         f"C — {current_question()['choice_c']}",
         f"D — {current_question()['choice_d']}",
     ],
-     disabled=st.session_state.submitted
-    
+    disabled=st.session_state.submitted,
+    key=f"q_{st.session_state.q_index}"
     )
     selected_letter = answer[0]
  
@@ -114,6 +114,7 @@ if st.session_state.page == "quiz":
             if st.button("Try again"):
                 st.session_state.submitted = False
                 st.session_state.iscorrect = None
+                st.session_state.q_index = st.session_state.q_index
                 st.rerun()
         st.write("Correct questions:", st.session_state.correct_items)
         st.write("Questions Answered:", st.session_state.questions_answered)
