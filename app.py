@@ -30,13 +30,7 @@ if "correct_index" not in st.session_state:
 
 # FUNCTIONS
 
-def iscorrect():
-    st.session_state.iscorrect = True
-    st.badge("Correct ✅", color = "green")        
-    st.write("Explanation:", current_question()["explanation"])
-    if st.session_state.q_index != st.session_state.correct_index:
-        st.session_state.correct_items+=1
-        st.session_state.q_index.add(st.session_state.correct_index)
+
     
 
 # HOME AND QUIZ PAGES
@@ -105,7 +99,13 @@ if st.session_state.page == "quiz":
  # RESULTS
 
         if selected_letter == current_question()["correct_answer"]:
-            iscorrect()
+            st.session_state.iscorrect = True
+            st.badge("Correct ✅", color = "green")        
+            st.write("Explanation:", current_question()["explanation"])
+                if st.session_state.q_index != st.session_state.correct_index:
+                    st.session_state.correct_items+=1
+                    st.session_state.q_index.add(st.session_state.correct_index)
+    
             if st.button("Next"):
                 st.session_state.q_index +=1
                 st.session_state.iscorrect = None
