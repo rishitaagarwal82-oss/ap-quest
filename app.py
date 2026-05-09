@@ -65,11 +65,16 @@ if st.session_state.page == "quiz":
     st.write(f"C. {current_question['choice_c']}")
     st.write(f"D. {current_question['choice_d']}")
    
-    answer = st.radio(
+   answer = st.radio(
     "Choose an answer:",
-    ["A", "B", "C", "D"],
-    disabled=st.session_state.submitted
-    )
+    [
+        f"A — {current_question['choice_a']}",
+        f"B — {current_question['choice_b']}",
+        f"C — {current_question['choice_c']}",
+        f"D — {current_question['choice_d']}",
+    ],
+    disabled=st.session_state.submitted,
+)
  
 
     
