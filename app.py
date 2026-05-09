@@ -26,7 +26,8 @@ if "last_ap" not in st.session_state:
     st.session_state.last_ap = None
 if "correct_index" not in st.session_state:
     st.session_state.correct_index = set()
-
+if "first_try" not in st.session_state:
+    st.session_state.first_try = {}
 # HOME AND QUIZ PAGES
 
 if st.session_state.page =="home":
@@ -81,10 +82,13 @@ if st.session_state.page == "quiz":
 
     if st.button("Submit") and not st.session_state.submitted:
         st.session_state.submitted = True
-        if selected_letter == current_question()["correct_answer"]:
-            st.session_state.iscorrect = True
-        else: 
-            st.session_state.iscorrect = False
+        is_correct = selected_letter == current_question()["correct_answer"]
+        if st.session_state.q_index not in st.session_state.first_try_result:
+            st.session_state.first_try_result[st.session_state.q_index] = is_correct
+            if is_correct:
+                st.session_state.correct_items+=1
+        st.session_state.iscorrect = is_correct
+
         if st.session_state.q_index not in st.session_state.answered_index:
             st.session_state.questions_answered +=1
             st.session_state.answered_index.add(st.session_state.q_index)
@@ -98,7 +102,6 @@ if st.session_state.page == "quiz":
             st.badge("Correct ✅", color = "green")        
             st.write("Explanation:", current_question()["explanation"])
             if st.session_state.q_index not in st.session_state.correct_index:
-                st.session_state.correct_items+=1
                 st.session_state.correct_index.add(st.session_state.q_index)
             if st.button("Next"):
                 st.session_state.q_index +=1
