@@ -28,7 +28,7 @@ def iscorrect():
     st.badge("Correct ✅", color = "green")        
     st.write("Explanation:", current_question["explanation"])
     st.session_state.correct_items+=1
-    disabled = st.session_state.iscorrect
+    
 
 # HOME AND QUIZ PAGES
 
@@ -47,6 +47,7 @@ if st.session_state.page =="home":
 # RENDER CSV DATA
 
 if st.session_state.page == "quiz":
+    disabled = st.session_state.submitted and st.session_state.iscorrect is True
     st.title( st.session_state.ap + " style questions")     
     ap_questions = df[df["ap"] == st.session_state.ap]
     if "q_index" not in st.session_state:
@@ -69,7 +70,8 @@ if st.session_state.page == "quiz":
         f"B — {current_question['choice_b']}",
         f"C — {current_question['choice_c']}",
         f"D — {current_question['choice_d']}",
-    ]
+    ],
+    disabled=disabled
     
     )
  
