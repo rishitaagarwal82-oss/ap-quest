@@ -72,12 +72,12 @@ if st.session_state.page == "quiz":
 
         st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
         if st.button("Return Home"):
-        st.session_state.q_index = 0
-        st.session_state.correct_items = 0
-        st.session_state.questions_answered = 0
-        st.session_state.first_try = {}
-        st.session_state.page = "home"
-        st.stop()
+            st.session_state.q_index = 0
+            st.session_state.correct_items = 0
+            st.session_state.questions_answered = 0
+            st.session_state.first_try = {}
+            st.session_state.page = "home"
+            st.stop()
 
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
