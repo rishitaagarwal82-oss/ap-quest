@@ -3,6 +3,32 @@ st.set_page_config(
     page_title="AP Quest",
     page_icon="🎓"
 )
+footer {visibility: hidden;}
+st.markdown("""
+<style>
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+[data-testid="stToolbar"] {
+    display: none;
+}
+
+[data-testid="stDecoration"] {
+    display: none;
+}
+
+[data-testid="stStatusWidget"] {
+    visibility: hidden;
+    height: 0%;
+    position: fixed;
+}
+
+.stDeployButton {
+    display: none;
+}
+</style>
+""", unsafe_allow_html=True)
 st.markdown(
     """
     <style>
