@@ -67,7 +67,7 @@ if st.session_state.page == "quiz":
     if total == 0:
         st.warning("No questions available for this AP subject. Return home to choose a different quiz.")
         
-    progress = (st.session_state.q_index + 1) / total
+    progress = (st.session_state.questions_answered / total) 
     st.write(f"Question {st.session_state.q_index + 1} of {total}")
     st.progress(progress, text=f"{int(progress * 100)}%")
     if progress > 1:
