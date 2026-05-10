@@ -77,6 +77,8 @@ if st.session_state.page == "quiz":
     progress = (st.session_state.q_index + 1) / total
     st.write(f"Question {st.session_state.q_index + 1} of {total}")
     st.progress(progress)
+    if st.session_state.q_index >= total:
+        st.progress(1.0)
 
     if  st.session_state.q_index>=total:
         if st.session_state.questions_answered > 0:
@@ -168,7 +170,7 @@ if st.session_state.page == "quiz":
                 st.session_state.iscorrect = None
                 st.rerun()
         st.write("Correct questions:", st.session_state.correct_items)
-        st.write("Questions Answered:", st.session_state.questions_answered)
+        
         
         
 
