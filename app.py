@@ -59,12 +59,7 @@ if st.session_state.page == "quiz":
     ap_questions = df[df["ap"] == st.session_state.ap]
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
-    total = len(ap_questions)
-
-    if st.session_state.q_index >= total:
-        st.success("🎉 You finished!")
-        st.session_state.q_index = 0
-        st.stop()
+   
 
     if "q_index" not in st.session_state:
         st.session_state.q_index = 0
@@ -116,7 +111,7 @@ if st.session_state.page == "quiz":
  # RESULTS
     if st.session_state.submitted:
         if st.session_state.iscorrect == True:
-            st.badge("Correct", icon = "✅", color = "green")        
+            st.success("Correct", icon = "✅", color = "green")        
             st.write("Explanation:", current_question()["explanation"])
             if st.session_state.q_index not in st.session_state.correct_index:
                 st.session_state.correct_index.add(st.session_state.q_index)
@@ -126,7 +121,7 @@ if st.session_state.page == "quiz":
                 st.session_state.submitted = False
                 st.rerun()
         elif st.session_state.iscorrect == False:
-            st.badge("Incorrect", icon = "❌", color = "red", width = "stretch")
+            st.error("Incorrect", icon = "❌", color = "red", width = "stretch")
 
             if st.button("Try again"):
                 st.session_state.submitted = False
@@ -150,6 +145,12 @@ if st.session_state.page == "quiz":
     if st.button("Back"):
         st.session_state.page = "home"
         st.rerun()
+     total = len(ap_questions)
+
+    if st.session_state.q_index >= total:
+        st.success("🎉 You finished!")
+        st.session_state.q_index = 0
+        st.stop()
 
     
  
