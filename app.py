@@ -71,7 +71,7 @@ if st.session_state.page == "quiz":
     st.write(f"Question {st.session_state.q_index + 1} of {total}")
     st.progress(progress, text=f"{int(progress * 100)}%")
     if progress > 1:
-        st.progress(1, text="100%")
+        st.progress(1.0, text="100%")
 
 
     if  st.session_state.q_index>=total:
