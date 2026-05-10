@@ -77,7 +77,7 @@ if st.session_state.page == "quiz":
             st.session_state.questions_answered = 0
             st.session_state.first_try = {}
             st.session_state.page = "home"
-            st.stop()
+        st.stop()
 
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
