@@ -46,7 +46,11 @@ if st.session_state.page =="home":
 # RENDER AP BUTTONS
 
     for ap in buttons:
-        if st.button(ap):
+       if st.button(ap):
+            st.session_state.first_try = {}
+            st.session_state.correct_items = 0
+            st.session_state.questions_answered = 0
+            st.session_state.q_index = 0
             st.session_state.page = "quiz"
             st.session_state.ap = ap
             st.rerun()
@@ -68,11 +72,11 @@ if st.session_state.page == "quiz":
 
         st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
         if st.button("Return Home"):
-            st.session_state.q_index = 0
-            st.session_state.correct_items= 0
-            st.session_state.questions_answered = 0
-            st.session_state.page = "home"
-            st.rerun()
+        st.session_state.q_index = 0
+        st.session_state.correct_items = 0
+        st.session_state.questions_answered = 0
+        st.session_state.first_try = {}
+        st.session_state.page = "home"
         st.stop()
 
     def current_question():
