@@ -3,7 +3,6 @@ st.set_page_config(
     page_title="AP Quest",
     page_icon="🎓"
 )
-footer {visibility: hidden;}
 st.markdown("""
 <style>
 #MainMenu {visibility: hidden;}
@@ -29,15 +28,6 @@ header {visibility: hidden;}
 }
 </style>
 """, unsafe_allow_html=True)
-st.markdown(
-    """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 import pandas as pd
 df= pd.read_csv("questions.csv", on_bad_lines="skip")
 buttons = ["AP Calculus AB", "AP Calculus BC", "AP Statistics", "AP Computer Science A", "AP Computer Science Principles", "AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2", "AP Physics C: Mechanics", "AP Environmental Science", "AP U.S. History", "AP World History: Modern", "AP European History", "AP Psychology", "AP U.S. Government and Politics", "AP English Language and Composition", "AP English Literature and Composition", "AP Spanish Language and Culture", "AP French Language and Culture"]
