@@ -59,7 +59,16 @@ if st.session_state.page == "quiz":
     ap_questions = df[df["ap"] == st.session_state.ap]
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
-   
+    score =  st.session_state.correct_items/st.session_state.questions_answered
+    total = len(ap_questions)
+
+    if  st.session_state.q_index>=total:
+        st.success("🎉 You finished! Your score is ", score)
+        st.session_state.q_index = 0
+        st.session_state.correct_items= 0
+        st.session_state.questions_answered = 0
+        st.stop()
+
 
     if "q_index" not in st.session_state:
         st.session_state.q_index = 0
@@ -145,16 +154,7 @@ if st.session_state.page == "quiz":
     if st.button("Back"):
         st.session_state.page = "home"
         st.rerun()
-    score =  st.session_state.correct_items/st.session_state.questions_answered
-    total = len(ap_questions)
-
-    if  st.session_state.q_index>=total:
-        st.success("🎉 You finished! Your score is ", score)
-        st.session_state.q_index = 0
-        st.session_state.correct_items= 0
-        st.session_state.questions_answered = 0
-        st.stop()
-
+   
     
  
            
