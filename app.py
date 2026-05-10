@@ -18,7 +18,7 @@ buttons = ["AP Calculus AB", "AP Calculus BC", "AP Statistics", "AP Computer Sci
 
 # DEFINE VARIABLES
 if "answered_index" not in st.session_state:
-    st.session_state.answered_index=0
+    st.session_state.answered_index= set()
 if "correct_items" not in st.session_state:
     st.session_state.correct_items = 0
 if "questions_answered" not in st.session_state:
