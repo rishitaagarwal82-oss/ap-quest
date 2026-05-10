@@ -111,7 +111,7 @@ if st.session_state.page == "quiz":
  # RESULTS
     if st.session_state.submitted:
         if st.session_state.iscorrect == True:
-            st.success("Correct", icon = "✅", color = "green")        
+            st.success("Correct✅")        
             st.write("Explanation:", current_question()["explanation"])
             if st.session_state.q_index not in st.session_state.correct_index:
                 st.session_state.correct_index.add(st.session_state.q_index)
@@ -121,7 +121,7 @@ if st.session_state.page == "quiz":
                 st.session_state.submitted = False
                 st.rerun()
         elif st.session_state.iscorrect == False:
-            st.error("Incorrect", icon = "❌", color = "red", width = "stretch")
+            st.error("Incorrect❌")
 
             if st.button("Try again"):
                 st.session_state.submitted = False
