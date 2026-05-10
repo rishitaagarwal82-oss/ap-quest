@@ -59,10 +59,15 @@ if st.session_state.page == "quiz":
     ap_questions = df[df["ap"] == st.session_state.ap]
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
-    score =  st.session_state.correct_items/st.session_state.questions_answered
+    
     total = len(ap_questions)
 
     if  st.session_state.q_index>=total:
+        if st.session_state.questions_answered > 0:
+            score = st.session_state.correct_items / st.session_state.questions_answered
+        else:
+            score = 0
+
         st.success("🎉 You finished! Your score is ", score)
         st.session_state.q_index = 0
         st.session_state.correct_items= 0
