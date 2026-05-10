@@ -59,6 +59,13 @@ if st.session_state.page == "quiz":
     ap_questions = df[df["ap"] == st.session_state.ap]
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
+    total = len(ap_questions)
+
+    if st.session_state.q_index >= total:
+        st.success("🎉 You finished!")
+        st.session_state.q_index = 0
+        st.stop()
+
     if "q_index" not in st.session_state:
         st.session_state.q_index = 0
     if "last_q" not in st.session_state:
