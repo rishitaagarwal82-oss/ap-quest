@@ -145,7 +145,7 @@ if st.session_state.page == "quiz":
     if st.button("Back"):
         st.session_state.page = "home"
         st.rerun()
-     total = len(ap_questions)
+    total = len(ap_questions)
 
     if st.session_state.q_index >= total:
         st.success("🎉 You finished!")
