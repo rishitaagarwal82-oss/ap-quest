@@ -37,6 +37,8 @@ if "correct_index" not in st.session_state:
     st.session_state.correct_index = set()
 if "first_try" not in st.session_state:
     st.session_state.first_try = {}
+if st.session_state.q_index not in st.session_state:
+    st.session_state.q_index = set()
 # HOME AND QUIZ PAGES
 
 if st.session_state.page =="home":
