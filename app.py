@@ -64,6 +64,20 @@ if st.session_state.page == "quiz":
     
     total = len(ap_questions)
 
+    if total == 0:
+        st.warning("No questions available for this AP subject. Return home to choose a different quiz.")
+        if st.button("Return Home"):
+            st.session_state.q_index = 0
+            st.session_state.correct_items = 0
+            st.session_state.questions_answered = 0
+            st.session_state.first_try = {}
+            st.session_state.page = "home"
+        st.stop()
+
+    progress = (st.session_state.q_index + 1) / total
+    st.write(f"Question {st.session_state.q_index + 1} of {total}")
+    st.progress(progress)
+
     if  st.session_state.q_index>=total:
         if st.session_state.questions_answered > 0:
             score = st.session_state.correct_items / st.session_state.questions_answered
