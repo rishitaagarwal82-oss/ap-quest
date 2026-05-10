@@ -1,120 +1,120 @@
-ap,question,choice_a,choice_b,choice_c,choice_d,correct_answer,explanation
-AP Calculus AB,Derivative of x^2?,x,2x,x^2,2,B,Power rule: d/dx x^2 = 2x
-AP Calculus AB,Integral of 1 dx?,x,1,0,undefined,A,Integral of 1 is x
-AP Calculus AB,Derivative of sin(x)?,cos(x),-cos(x),sin(x),-sin(x),A,Standard derivative rule
-AP Calculus AB,What does a derivative represent?,Slope,Area,Volume,Distance,A,Derivative represents slope of a function
-AP Calculus AB,Limit of 1/x as x→∞?,0,∞,1,undefined,A,Function approaches 0
+ap,question,choice_a,choice_b,choice_c,choice_d,correct_answer,explanation,created_by
+AP Calculus AB,Derivative of x^2?,x,2x,x^2,2,B,Power rule: d/dx x^2 = 2x,John Doe
+AP Calculus AB,Integral of 1 dx?,x,1,0,undefined,A,Integral of 1 is x,Jane Doe
+AP Calculus AB,Derivative of sin(x)?,cos(x),-cos(x),sin(x),-sin(x),A,Standard derivative rule,John Doe
+AP Calculus AB,What does a derivative represent?,Slope,Area,Volume,Distance,A,Derivative represents slope of a function,Jane Doe
+AP Calculus AB,Limit of 1/x as x→∞?,0,∞,1,undefined,A,Function approaches 0,John Doe
 
-AP Calculus BC,Integral of e^x?,e^x,0,1,x,A,Derivative and integral of e^x is itself
-AP Calculus BC,Derivative of tan(x)?,sec^2(x),cos(x),-sin(x),sec(x),A,Standard trig derivative
-AP Calculus BC,Maclaurin series center?,0,1,-1,∞,A,Maclaurin series is centered at 0
-AP Calculus BC,Integral of 1/x?,ln|x|,x,1/x,0,A,Logarithmic integral rule
-AP Calculus BC,What does convergence mean?,Finite limit,Infinite growth,Oscillation,Random behavior,A,Series approaches a finite value
+AP Calculus BC,Integral of e^x?,e^x,0,1,x,A,Derivative and integral of e^x is itself,Jane Doe
+AP Calculus BC,Derivative of tan(x)?,sec^2(x),cos(x),-sin(x),sec(x),A,Standard trig derivative,John Doe
+AP Calculus BC,Maclaurin series center?,0,1,-1,∞,A,Maclaurin series is centered at 0,Jane Doe
+AP Calculus BC,Integral of 1/x?,ln|x|,x,1/x,0,A,Logarithmic integral rule,John Doe
+AP Calculus BC,What does convergence mean?,Finite limit,Infinite growth,Oscillation,Random behavior,A,Series approaches a finite value,Jane Doe
 
-AP Statistics,Mean measures?,Center,Spread,Probability,Time,A,Mean describes center of data
-AP Statistics,Standard deviation measures?,Spread,Center,Median,Mode,A,Measures variability
-AP Statistics,Probability range?,0-1,1-10,-1-1,0-100,A,Probability is between 0 and 1
-AP Statistics,Median is?,Middle value,Average,Sum,Mode,A,Middle of sorted data
-AP Statistics,Correlation measures?,Relationship,Mean,Spread,Count,A,Measures association
+AP Statistics,Mean measures?,Center,Spread,Probability,Time,A,Mean describes center of data,John Doe
+AP Statistics,Standard deviation measures?,Spread,Center,Median,Mode,A,Measures variability,Jane Doe
+AP Statistics,Probability range?,0-1,1-10,-1-1,0-100,A,Probability is between 0 and 1,John Doe
+AP Statistics,Median is?,Middle value,Average,Sum,Mode,A,Middle of sorted data,Jane Doe
+AP Statistics,Correlation measures?,Relationship,Mean,Spread,Count,A,Measures association,John Doe
 
-AP Computer Science A,Array is?,Collection,Single variable,Loop,Class,A,Stores multiple values
-AP Computer Science A,Class is?,Blueprint,Object,Loop,Variable,A,Blueprint for objects
-AP Computer Science A,Loop is?,Repetition,Decision,Function,Class,A,Repeats code
-AP Computer Science A,Object is?,Instance,Class,Method,Loop,A,Instance of a class
-AP Computer Science A,Boolean is?,True/false,Integer,String,Double,A,Logical value type
+AP Computer Science A,Array is?,Collection,Single variable,Loop,Class,A,Stores multiple values,Jane Doe
+AP Computer Science A,Class is?,Blueprint,Object,Loop,Variable,A,Blueprint for objects,John Doe
+AP Computer Science A,Loop is?,Repetition,Decision,Function,Class,A,Repeats code,Jane Doe
+AP Computer Science A,Object is?,Instance,Class,Method,Loop,A,Instance of a class,John Doe
+AP Computer Science A,Boolean is?,True/false,Integer,String,Double,A,Logical value type,Jane Doe
 
-AP Computer Science Principles,Algorithm is?,Steps,Bug,Variable,Hardware,A,Step-by-step instructions
-AP Computer Science Principles,Binary uses?,0 and 1,Letters,Words,Symbols,A,Base-2 system
-AP Computer Science Principles,Internet is?,Network,Computer,Software,Code,A,Global network
-AP Computer Science Principles,Cloud computing is?,Remote servers,Local PC,CPU,RAM,A,Uses remote servers
-AP Computer Science Principles,Abstraction means?,Simplifying,Adding detail,Encrypting,Deleting,A,Removes unnecessary detail
+AP Computer Science Principles,Algorithm is?,Steps,Bug,Variable,Hardware,A,Step-by-step instructions,John Doe
+AP Computer Science Principles,Binary uses?,0 and 1,Letters,Words,Symbols,A,Base-2 system,Jane Doe
+AP Computer Science Principles,Internet is?,Network,Computer,Software,Code,A,Global network,John Doe
+AP Computer Science Principles,Cloud computing is?,Remote servers,Local PC,CPU,RAM,A,Uses remote servers,Jane Doe
+AP Computer Science Principles,Abstraction means?,Simplifying,Adding detail,Encrypting,Deleting,A,Removes unnecessary detail,John Doe
 
-AP Biology,What produces ATP?,Mitochondria,Nucleus,Ribosome,Golgi apparatus,A,Cellular respiration occurs in mitochondria
-AP Biology,What stores genetic information?,Protein,Lipid,DNA,Carbohydrate,C,DNA stores heredity
-AP Biology,Photosynthesis occurs in?,Chloroplast,Mitochondria,Nucleus,Cytoplasm,A,Chloroplast converts light energy
-AP Biology,Ribosomes function?,Protein synthesis,ATP storage,DNA storage,Transport,A,Build proteins
-AP Biology,Cell membrane role?,Controls entry,Stores DNA,Produces ATP,Makes proteins,A,Regulates cell transport
+AP Biology,What produces ATP?,Mitochondria,Nucleus,Ribosome,Golgi apparatus,A,Cellular respiration occurs in mitochondria,Jane Doe
+AP Biology,What stores genetic information?,Protein,Lipid,DNA,Carbohydrate,C,DNA stores heredity,John Doe
+AP Biology,Photosynthesis occurs in?,Chloroplast,Mitochondria,Nucleus,Cytoplasm,A,Chloroplast converts light energy,Jane Doe
+AP Biology,Ribosomes function?,Protein synthesis,ATP storage,DNA storage,Transport,A,Build proteins,John Doe
+AP Biology,Cell membrane role?,Controls entry,Stores DNA,Produces ATP,Makes proteins,A,Regulates cell transport,Jane Doe
 
-AP Chemistry,Atomic number is?,Protons,Neutrons,Electrons,Mass,A,Protons define element
-AP Chemistry,pH measures?,Acidity,Temperature,Pressure,Mass,A,Hydrogen ion concentration
-AP Chemistry,Covalent bond shares?,Electrons,Protons,Neutrons,Ions,A,Electron sharing
-AP Chemistry,Exothermic reaction?,Releases heat,Absorbs heat,No change,Stops,A,Releases energy
-AP Chemistry,Oxidation is?,Loss of electrons,Gain of electrons,Neutralization,Reaction,A,OIL RIG rule
+AP Chemistry,Atomic number is?,Protons,Neutrons,Electrons,Mass,A,Protons define element,John Doe
+AP Chemistry,pH measures?,Acidity,Temperature,Pressure,Mass,A,Hydrogen ion concentration,Jane Doe
+AP Chemistry,Covalent bond shares?,Electrons,Protons,Neutrons,Ions,A,Electron sharing,John Doe
+AP Chemistry,Exothermic reaction?,Releases heat,Absorbs heat,No change,Stops,A,Releases energy,Jane Doe
+AP Chemistry,Oxidation is?,Loss of electrons,Gain of electrons,Neutralization,Reaction,A,OIL RIG rule,John Doe
 
-AP Physics 1,Force equals?,ma,mv,m/a,mg,A,Newton’s 2nd law
-AP Physics 1,Velocity is?,Speed with direction,Force,Energy,Mass,A,Vector quantity
-AP Physics 1,Acceleration is?,Change in velocity,Position,Mass,Force,A,Rate of velocity change
-AP Physics 1,Energy unit?,Joule,Newton,Watt,Pascal,A,SI unit of energy
-AP Physics 1,Gravity on Earth?,9.8 m/s²,10 m/s²,8 m/s²,12 m/s²,A,Standard value
+AP Physics 1,Force equals?,ma,mv,m/a,mg,A,Newton’s 2nd law,Jane Doe
+AP Physics 1,Velocity is?,Speed with direction,Force,Energy,Mass,A,Vector quantity,John Doe
+AP Physics 1,Acceleration is?,Change in velocity,Position,Mass,Force,A,Rate of velocity change,Jane Doe
+AP Physics 1,Energy unit?,Joule,Newton,Watt,Pascal,A,SI unit of energy,John Doe
+AP Physics 1,Gravity on Earth?,9.8 m/s²,10 m/s²,8 m/s²,12 m/s²,A,Standard value,Jane Doe
 
-AP Physics 2,Pressure formula?,F/A,mv,ma,E,A,Force per unit area
-AP Physics 2,Current unit?,Ampere,Volt,Ohm,Watt,A,Electric current unit
-AP Physics 2,Wave speed?,fλ,mv,ma,E,A,Wave equation
-AP Physics 2,Refraction is?,Bending light,Reflection,Absorption,Emission,A,Change in direction
-AP Physics 2,Convection occurs in?,Fluids,Solids,Vacuum,Light,A,Heat transfer in fluids
+AP Physics 2,Pressure formula?,F/A,mv,ma,E,A,Force per unit area,John Doe
+AP Physics 2,Current unit?,Ampere,Volt,Ohm,Watt,A,Electric current unit,Jane Doe
+AP Physics 2,Wave speed?,fλ,mv,ma,E,A,Wave equation,John Doe
+AP Physics 2,Refraction is?,Bending light,Reflection,Absorption,Emission,A,Change in direction,Jane Doe
+AP Physics 2,Convection occurs in?,Fluids,Solids,Vacuum,Light,A,Heat transfer in fluids,John Doe
 
-AP Physics C: Mechanics,Newton’s 2nd law?,F=ma,E=mc²,v=at,KE=mv,A,Fundamental law
-AP Physics C: Mechanics,Work formula?,F·d,mv,ma,ρv,A,Force times distance
-AP Physics C: Mechanics,Momentum?,mv,ma,Ft,E,A,Mass times velocity
-AP Physics C: Mechanics,Impulse equals?,Change in momentum,Force only,Time only,Energy,A,Impulse = Δp
-AP Physics C: Mechanics,Kinetic energy?,½mv²,mv,ma,Fd,A,Energy of motion
+AP Physics C: Mechanics,Newton’s 2nd law?,F=ma,E=mc²,v=at,KE=mv,A,Fundamental law,Jane Doe
+AP Physics C: Mechanics,Work formula?,F·d,mv,ma,ρv,A,Force times distance,John Doe
+AP Physics C: Mechanics,Momentum?,mv,ma,Ft,E,A,Mass times velocity,Jane Doe
+AP Physics C: Mechanics,Impulse equals?,Change in momentum,Force only,Time only,Energy,A,Impulse = Δp,John Doe
+AP Physics C: Mechanics,Kinetic energy?,½mv²,mv,ma,Fd,A,Energy of motion,Jane Doe
 
-AP Environmental Science,Main greenhouse gas?,CO2,O2,N2,H2O,A,Carbon dioxide traps heat
-AP Environmental Science,Renewable energy?,Solar,Coal,Oil,Gas,A,Solar is renewable
-AP Environmental Science,Ozone layer protects?,UV rays,Heat,Wind,Water,A,Blocks UV radiation
-AP Environmental Science,Biodiversity means?,Variety of life,Weather,Climate,Soil,A,Diversity of organisms
-AP Environmental Science,Ecosystem includes?,Organisms + environment,Only animals,Only plants,Air,A,Living + nonliving
+AP Environmental Science,Main greenhouse gas?,CO2,O2,N2,H2O,A,Carbon dioxide traps heat,John Doe
+AP Environmental Science,Renewable energy?,Solar,Coal,Oil,Gas,A,Solar is renewable,Jane Doe
+AP Environmental Science,Ozone layer protects?,UV rays,Heat,Wind,Water,A,Blocks UV radiation,John Doe
+AP Environmental Science,Biodiversity means?,Variety of life,Weather,Climate,Soil,A,Diversity of organisms,Jane Doe
+AP Environmental Science,Ecosystem includes?,Organisms + environment,Only animals,Only plants,Air,A,Living + nonliving,John Doe
 
-AP U.S. History,Declaration signed?,1776,1492,1812,1865,A,Independence year
-AP U.S. History,Civil War ended?,1865,1776,1914,1945,A,End of war
-AP U.S. History,Cold War was between?,US and USSR,US and UK,France and Germany,China and Japan,A,US vs USSR
-AP U.S. History,New Deal leader?,FDR,Lincoln,Reagan,Bush,A,Franklin D. Roosevelt
-AP U.S. History,Industrial Revolution increased?,Production,War,Poverty,Isolation,A,Mass production
+AP U.S. History,Declaration signed?,1776,1492,1812,1865,A,Independence year,Jane Doe
+AP U.S. History,Civil War ended?,1865,1776,1914,1945,A,End of war,John Doe
+AP U.S. History,Cold War was between?,US and USSR,US and UK,France and Germany,China and Japan,A,US vs USSR,Jane Doe
+AP U.S. History,New Deal leader?,FDR,Lincoln,Reagan,Bush,A,Franklin D. Roosevelt,John Doe
+AP U.S. History,Industrial Revolution increased?,Production,War,Poverty,Isolation,A,Mass production,Jane Doe
 
-AP World History,Silk Road traded?,Goods and ideas,Only gold,Only food,Only weapons,A,Trade network
-AP World History,WWI started?,1914,1776,1800,1945,A,Start of WWI
-AP World History,Feudalism in?,Medieval Europe,Modern US,Ancient Africa,Space age,A,Medieval system
-AP World History,Industrialization began in?,Britain,China,India,Japan,A,Started in Britain
-AP World History,Colonialism is?,Control of regions,Trade only,Peace system,Religion,A,Imperial control
+AP World History,Silk Road traded?,Goods and ideas,Only gold,Only food,Only weapons,A,Trade network,John Doe
+AP World History,WWI started?,1914,1776,1800,1945,A,Start of WWI,Jane Doe
+AP World History,Feudalism in?,Medieval Europe,Modern US,Ancient Africa,Space age,A,Medieval system,John Doe
+AP World History,Industrialization began in?,Britain,China,India,Japan,A,Started in Britain,Jane Doe
+AP World History,Colonialism is?,Control of regions,Trade only,Peace system,Religion,A,Imperial control,John Doe
 
-AP European History,Renaissance began?,Italy,France,Germany,Spain,A,Origin in Italy
-AP European History,Reformation led by?,Luther,Newton,Churchill,Da Vinci,A,Martin Luther
-AP European History,WWII ended?,1945,1918,1776,1800,A,End of WWII
-AP European History,Enlightenment focus?,Reason,War,Religion,Trade,A,Emphasis on reason
-AP European History,Industrial Revolution started?,Britain,USA,France,Italy,A,Origin in Britain
+AP European History,Renaissance began?,Italy,France,Germany,Spain,A,Origin in Italy,Jane Doe
+AP European History,Reformation led by?,Luther,Newton,Churchill,Da Vinci,A,Martin Luther,John Doe
+AP European History,WWII ended?,1945,1918,1776,1800,A,End of WWII,Jane Doe
+AP European History,Enlightenment focus?,Reason,War,Religion,Trade,A,Emphasis on reason,John Doe
+AP European History,Industrial Revolution started?,Britain,USA,France,Italy,A,Origin in Britain,Jane Doe
 
-AP Psychology,Neuron is?,Nerve cell,Blood cell,Skin cell,Bone cell,A,Nervous system cell
-AP Psychology,Memory stores?,Information,Energy,Protein,Water,A,Stores data
-AP Psychology,Freud studied?,Unconscious mind,Physics,Math,Chemistry,A,Psychoanalysis
-AP Psychology,Classical conditioning?,Learning by association,Math rule,Physics law,Genetics,A,Pavlov style learning
-AP Psychology,Brain controls?,Behavior,Weather,Gravity,Sound,A,Central control system
+AP Psychology,Neuron is?,Nerve cell,Blood cell,Skin cell,Bone cell,A,Nervous system cell,John Doe
+AP Psychology,Memory stores?,Information,Energy,Protein,Water,A,Stores data,Jane Doe
+AP Psychology,Freud studied?,Unconscious mind,Physics,Math,Chemistry,A,Psychoanalysis,John Doe
+AP Psychology,Classical conditioning?,Learning by association,Math rule,Physics law,Genetics,A,Pavlov style learning,Jane Doe
+AP Psychology,Brain controls?,Behavior,Weather,Gravity,Sound,A,Central control system,John Doe
 
-AP U.S. Government,Legislative branch?,Makes laws,Enforces laws,Interprets laws,Local rules,A,Creates laws
-AP U.S. Government,President is?,Executive,Legislative,Judicial,Citizen,A,Exec branch leader
-AP U.S. Government,Constitution is?,Law of US,Book,Essay,Rule,A,Highest law
-AP U.S. Government,Checks and balances?,Limits power,Increases power,Removes laws,Creates war,A,Balances branches
-AP U.S. Government,Amendment is?,Change to Constitution,New law,War rule,Tax,A,Constitution change
+AP U.S. Government,Legislative branch?,Makes laws,Enforces laws,Interprets laws,Local rules,A,Creates laws,Jane Doe
+AP U.S. Government,President is?,Executive,Legislative,Judicial,Citizen,A,Exec branch leader,John Doe
+AP U.S. Government,Constitution is?,Law of US,Book,Essay,Rule,A,Highest law,Jane Doe
+AP U.S. Government,Checks and balances?,Limits power,Increases power,Removes laws,Creates war,A,Balances branches,John Doe
+AP U.S. Government,Amendment is?,Change to Constitution,New law,War rule,Tax,A,Constitution change,Jane Doe
 
-AP English Language,Thesis is?,Main argument,Summary,Quote,Title,A,Central claim
-AP English Language,Rhetoric is?,Persuasion,Math,Science,Grammar,A,Art of persuasion
-AP English Language,Tone is?,Attitude,Topic,Grammar,Format,A,Author’s attitude
-AP English Language,Evidence supports?,Claim,Style,Format,Title,A,Supports argument
-AP English Language,Audience is?,Readers,Writer,Teacher,Book,A,Who reads text
+AP English Language,Thesis is?,Main argument,Summary,Quote,Title,A,Central claim,John Doe
+AP English Language,Rhetoric is?,Persuasion,Math,Science,Grammar,A,Art of persuasion,Jane Doe
+AP English Language,Tone is?,Attitude,Topic,Grammar,Format,A,Author’s attitude,John Doe
+AP English Language,Evidence supports?,Claim,Style,Format,Title,A,Supports argument,Jane Doe
+AP English Language,Audience is?,Readers,Writer,Teacher,Book,A,Who reads text,John Doe
 
-AP English Literature,Theme is?,Central idea,Plot,Character,Grammar,A,Main idea
-AP English Literature,Metaphor is?,Comparison,Definition,Rule,Plot,A,Indirect comparison
-AP English Literature,Protagonist is?,Main character,Villain,Narrator,Reader,A,Main character
-AP English Literature,Symbol represents?,Idea,Word,Sentence,Grammar,A,Represents meaning
-AP English Literature,Conflict is?,Problem,Solution,Theme,Title,A,Struggle in story
+AP English Literature,Theme is?,Central idea,Plot,Character,Grammar,A,Main idea,Jane Doe
+AP English Literature,Metaphor is?,Comparison,Definition,Rule,Plot,A,Indirect comparison,John Doe
+AP English Literature,Protagonist is?,Main character,Villain,Narrator,Reader,A,Main character,Jane Doe
+AP English Literature,Symbol represents?,Idea,Word,Sentence,Grammar,A,Represents meaning,John Doe
+AP English Literature,Conflict is?,Problem,Solution,Theme,Title,A,Struggle in story,Jane Doe
 
-AP Spanish Language,Hola means?,Hello,Bye,Thanks,Sorry,A,Greeting
-AP Spanish Language,Gracias means?,Thank you,Hello,Bye,Sorry,A,Gratitude
-AP Spanish Language,Libro means?,Book,Pen,Table,Chair,A,Book translation
-AP Spanish Language,Comer means?,To eat,To run,To write,To see,A,Verb meaning eat
-AP Spanish Language,Casa means?,House,Car,Tree,Road,A,House translation
+AP Spanish Language,Hola means?,Hello,Bye,Thanks,Sorry,A,Greeting,John Doe
+AP Spanish Language,Gracias means?,Thank you,Hello,Bye,Sorry,A,Gratitude,Jane Doe
+AP Spanish Language,Libro means?,Book,Pen,Table,Chair,A,Book translation,John Doe
+AP Spanish Language,Comer means?,To eat,To run,To write,To see,A,Verb meaning eat,Jane Doe
+AP Spanish Language,Casa means?,House,Car,Tree,Road,A,House translation,John Doe
 
-AP French Language,Bonjour means?,Hello,Bye,Thanks,Sorry,A,Greeting
-AP French Language,Merci means?,Thank you,Hello,Bye,Sorry,A,Gratitude
-AP French Language,Livre means?,Book,Pen,Chair,Table,A,Book translation
-AP French Language,Manger means?,To eat,To run,To write,To see,A,Verb eat
-AP French Language,Maison means?,House,Car,Tree,Road,A,House translation
+AP French Language,Bonjour means?,Hello,Bye,Thanks,Sorry,A,Greeting,Jane Doe
+AP French Language,Merci means?,Thank you,Hello,Bye,Sorry,A,Gratitude,John Doe
+AP French Language,Livre means?,Book,Pen,Chair,Table,A,Book translation,Jane Doe
+AP French Language,Manger means?,To eat,To run,To write,To see,A,Verb eat,John Doe
+AP French Language,Maison means?,House,Car,Tree,Road,A,House translation,Jane Doe

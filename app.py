@@ -100,7 +100,8 @@ if st.session_state.page == "quiz":
     
     
     
-    st.header(current_question()["question"], divider = "blue")
+    st.subheader("Question written by:", current_question()["created_by"])
+    st.subheader(current_question()["question"], divider = "blue")
 
     answer = st.radio(
     "Choose an answer:",
@@ -134,6 +135,7 @@ if st.session_state.page == "quiz":
         st.rerun()
  # RESULTS
     if st.session_state.submitted:
+        
         if st.session_state.iscorrect == True:
             st.success("Correct✅")        
             st.write("Explanation:", current_question()["explanation"])
