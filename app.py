@@ -41,7 +41,7 @@ if "q_index" not in st.session_state:
 
 if st.session_state.page =="home":
     st.title("Welcome to **AP Quest!**")
-    st.header("What would you like to practice today?")
+    st.header("What would you like to practice today?", divider = "blue")
 
 # RENDER AP BUTTONS
 
@@ -96,7 +96,7 @@ if st.session_state.page == "quiz":
     
     
     
-    st.header(current_question()["question"])
+    st.header(current_question()["question"], divider = "blue")
 
     answer = st.radio(
     "Choose an answer:",
