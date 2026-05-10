@@ -17,7 +17,8 @@ df= pd.read_csv("questions.csv", on_bad_lines="skip")
 buttons = ["AP Calculus AB", "AP Calculus BC", "AP Statistics", "AP Computer Science A", "AP Computer Science Principles", "AP Biology", "AP Chemistry", "AP Physics 1", "AP Physics 2", "AP Physics C: Mechanics", "AP Environmental Science", "AP U.S. History", "AP World History: Modern", "AP European History", "AP Psychology", "AP U.S. Government and Politics", "AP English Language and Composition", "AP English Literature and Composition", "AP Spanish Language and Culture", "AP French Language and Culture"]
 
 # DEFINE VARIABLES
-
+if "answered_index" not in st.session_state:
+    st.session_state.answered_index=0
 if "correct_items" not in st.session_state:
     st.session_state.correct_items = 0
 if "questions_answered" not in st.session_state:
@@ -120,7 +121,10 @@ if st.session_state.page == "quiz":
             if is_correct:
                 st.session_state.correct_items+=1
         st.session_state.iscorrect = is_correct
-
+        if st.session_state.q_index not in st.session_state.answered_index: 
+            st.session_state.questions_answered +=1 
+            st.session_state.answered_index.add(st.session_state.q_index)
+            st.rerun()
  # RESULTS
     if st.session_state.submitted:
         if st.session_state.iscorrect == True:
