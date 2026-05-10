@@ -120,10 +120,11 @@ if st.session_state.page == "quiz":
         is_correct = selected_letter == current_question()["correct_answer"]
         if st.session_state.q_index not in st.session_state.first_try:
             st.session_state.first_try[st.session_state.q_index] = is_correct
+            st.session_state.questions_answered += 1
             if is_correct:
                 st.session_state.correct_items+=1
         st.session_state.iscorrect = is_correct
-        st.session_state.questions_answered += 1
+        
          
             
         st.rerun()
