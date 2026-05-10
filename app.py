@@ -100,8 +100,9 @@ if st.session_state.page == "quiz":
     
     
     
-    st.subheader("Question written by:", current_question()["created_by"])
-    st.subheader(current_question()["question"], divider = "blue")
+    
+    st.header(current_question()["question"], divider = "blue")
+    st.subheader(f"Question written by: {current_question()["created_by"]}")
 
     answer = st.radio(
     "Choose an answer:",
