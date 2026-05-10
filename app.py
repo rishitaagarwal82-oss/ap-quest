@@ -59,11 +59,6 @@ if st.session_state.page == "quiz":
     disabled = st.session_state.submitted and st.session_state.iscorrect is True
     st.title( st.session_state.ap + " style questions")     
     ap_questions = df[df["ap"] == st.session_state.ap]
-    def current_question():
-        return ap_questions.iloc[st.session_state.q_index] 
-    if st.button("Back"):
-        st.session_state.page = "home"
-        st.rerun()
     
     total = len(ap_questions)
 
@@ -73,11 +68,23 @@ if st.session_state.page == "quiz":
         else:
             score = 0
 
-        st.success("🎉 You finished! Your score is ", str(score))
+        st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
         st.session_state.q_index = 0
         st.session_state.correct_items= 0
         st.session_state.questions_answered = 0
         st.stop()
+
+    def current_question():
+        return ap_questions.iloc[st.session_state.q_index] 
+    if st.button("⬅ Back"):
+        st.session_state.page = "home"
+        st.session_state.q_index = 0
+        st.session_state.submitted = False
+        st.session_state.iscorrect = None
+        st.session_state.correct_items= 0
+        st.session_state.questions_answered = 0
+        st.rerun()
+    
 
 
     if "q_index" not in st.session_state:
