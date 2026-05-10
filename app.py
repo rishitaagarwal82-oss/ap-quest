@@ -119,7 +119,7 @@ if st.session_state.page == "quiz":
                 st.session_state.submitted = False
                 st.rerun()
         elif st.session_state.iscorrect == False:
-            st.badge("Incorrect", icon = "❌", color = "red")
+            st.badge("Incorrect", icon = "❌", color = "red", width = "stretch")
 
             if st.button("Try again"):
                 st.session_state.submitted = False
