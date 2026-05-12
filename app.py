@@ -1,6 +1,6 @@
 import streamlit as st
 st.set_page_config(
-    page_title="AP Quest",
+    page_title="5score",
     page_icon="images/yuh.png"
 )
 st.markdown("""
