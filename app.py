@@ -56,7 +56,28 @@ if "q_index" not in st.session_state:
 # HOME AND QUIZ PAGES
 
 if st.session_state.page =="home":
-    st.title("Welcome to **5score!**")
+    
+    st.title("🎓 Welcome to **5score!**")
+    st.image("images/IMG_1779.webp")
+    st.markdown("""
+    ### Ace Your AP Exams with Confidence!
+    
+    **5score!** is your ultimate companion for AP exam preparation. Practice with real AP-style questions across multiple subjects, track your progress, and build the skills you need to succeed.
+    
+    #### Key Features:
+    - 📚 **Comprehensive Coverage**: Questions for 20+ AP subjects
+    - 📊 **Progress Tracking**: Monitor your performance and improvement
+    - 🔄 **Instant Feedback**: Get explanations for every answer
+    - 🎯 **Adaptive Learning**: Focus on areas where you need the most practice
+    
+    #### How to Get Started:
+    1. Choose your AP subject from the options below
+    2. Answer questions and receive immediate feedback
+    3. Review explanations to understand concepts better
+    4. Track your progress and aim for that perfect 5!
+    
+    ---
+    """)
     st.header("What would you like to practice today?", divider = "blue")
 
 # RENDER AP BUTTONS
