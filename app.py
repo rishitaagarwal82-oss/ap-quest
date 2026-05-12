@@ -81,16 +81,20 @@ if st.session_state.page =="home":
     st.header("What would you like to practice today?", divider = "blue")
 
 # RENDER AP BUTTONS
-
-    for ap in buttons:
-       if st.button(ap):
-            st.session_state.first_try = {}
-            st.session_state.correct_items = 0
-            st.session_state.questions_answered = 0
-            st.session_state.q_index = 0
-            st.session_state.page = "quiz"
-            st.session_state.ap = ap
-            st.rerun()
+    num_columns = 4
+    cols = st.columns(num_columns)
+    
+    for i, ap in enumerate(buttons):
+        col_index = i % num_columns
+        with cols[col_index]:
+            if st.button(ap, use_container_width=True):
+                st.session_state.first_try = {}
+                st.session_state.correct_items = 0
+                st.session_state.questions_answered = 0
+                st.session_state.q_index = 0
+                st.session_state.page = "quiz"
+                st.session_state.ap = ap
+                st.rerun()
     
 # RENDER CSV DATA
 
