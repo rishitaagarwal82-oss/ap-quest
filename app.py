@@ -56,7 +56,7 @@ if "q_index" not in st.session_state:
 # HOME AND QUIZ PAGES
 
 if st.session_state.page =="home":
-    st.title("Welcome to **AP Quest!**")
+    st.title("Welcome to **5score!**")
     st.header("What would you like to practice today?", divider = "blue")
 
 # RENDER AP BUTTONS
