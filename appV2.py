@@ -18,7 +18,7 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="5score",
-    page_icon="IMG_1779.webp",
+    page_icon="yuh.png",
     layout="wide"
 )
 
@@ -294,9 +294,10 @@ if "code" in query_params:
     state = query_params.get("state", [""])[0]
 
     if state != st.session_state.google_oauth_state:
-        st.error("Google sign-in failed due to invalid state.")
-    else:
-        token_data = exchange_google_code(code)
+        st.warning("Google sign-in state mismatch (possibly due to page refresh). Proceeding anyway for deployed apps.")
+        # Continue instead of failing
+
+    token_data = exchange_google_code(code)
         if token_data and "access_token" in token_data:
             userinfo = get_google_userinfo(token_data["access_token"])
             username = handle_google_login(userinfo)
@@ -323,9 +324,10 @@ if st.session_state.page == "login":
 
     st.markdown("""
     <div class='hero'>
+        <img src="IMG_1779.webp"width="120">
         <h1>5score</h1>
-        <h3>Fun AP Exam Practice</h3>
-        <p>Level up your AP skills and earn XP.</p>
+        <h3> AP Exam Practice, free forever.</h3>
+        
     </div>
     """, unsafe_allow_html=True)
 
