@@ -1,26 +1,4 @@
-# 5score — Gamified AP Practice Platform
 
-## Project Structure
-
-```text
-5score/
-│
-├── app.py
-├── questions.csv
-├── users.db
-├── requirements.txt
-├── images/
-│   ├── yuh.png
-│   └── banner.webp
-│
-└── styles.css
-```
-
----
-
-# FULL APP CODE (app.py)
-
-```python
 import streamlit as st
 import pandas as pd
 import sqlite3
