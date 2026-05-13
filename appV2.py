@@ -5,6 +5,7 @@ from urllib.parse import urlencode
 
 import requests
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 import sqlite3
 import hashlib
@@ -43,7 +44,7 @@ header {
 }
 
 html, body, [class*="css"] {
-    font-family: 'Zen Dots', sans-serif;
+    font-family: 'Zen Dots', sans-serif !important;
 }
 
 .stApp {
@@ -54,7 +55,7 @@ html, body, [class*="css"] {
 .hero {
     padding: 2rem;
     border-radius: 25px;
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background:#6FBF83;
     margin-bottom: 2rem;
 }
 
@@ -163,9 +164,38 @@ def is_guest():
     return st.session_state.get("guest_mode", False)
 
 
+def get_google_redirect_uri():
+    configured = get_config_value("GOOGLE_REDIRECT_URI", "")
+    if configured:
+        return configured
+    return st.session_state.get("host_url", "")
+
+
+def ensure_host_url():
+    if "host_url" in st.session_state:
+        return
+
+    params = st.query_params
+    if "host_url" in params:
+        st.session_state.host_url = params["host_url"][0]
+        st.query_params.clear()
+        st.rerun()
+
+    components.html(
+        """
+        <script>
+        const origin = window.location.origin;
+        const search = window.location.search;
+        const delim = search.includes('?') ? '&' : '?';
+        window.location.replace(window.location.pathname + search + delim + 'host_url=' + encodeURIComponent(origin));
+        </script>
+        """,
+        height=0,
+    )
+
+
 GOOGLE_CLIENT_ID = get_config_value("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = get_config_value("GOOGLE_CLIENT_SECRET")
-GOOGLE_REDIRECT_URI = get_config_value("GOOGLE_REDIRECT_URI", "http://localhost:8501")
 GOOGLE_SCOPE = "openid email profile"
 GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
@@ -175,9 +205,10 @@ GOOGLE_USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo"
 def get_google_auth_url():
     state = secrets.token_urlsafe(16)
     st.session_state.google_oauth_state = state
+    redirect_uri = get_google_redirect_uri()
     params = {
         "client_id": GOOGLE_CLIENT_ID,
-        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "redirect_uri": redirect_uri,
         "response_type": "code",
         "scope": GOOGLE_SCOPE,
         "state": state,
@@ -188,11 +219,12 @@ def get_google_auth_url():
 
 
 def exchange_google_code(code):
+    redirect_uri = get_google_redirect_uri()
     data = {
         "code": code,
         "client_id": GOOGLE_CLIENT_ID,
         "client_secret": GOOGLE_CLIENT_SECRET,
-        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "redirect_uri": redirect_uri,
         "grant_type": "authorization_code"
     }
     response = requests.post(GOOGLE_TOKEN_URL, data=data)
@@ -282,6 +314,9 @@ if "code" in query_params:
 # =========================
 
 if st.session_state.page == "login":
+
+    if not get_config_value("GOOGLE_REDIRECT_URI", ""):
+        ensure_host_url()
 
     st.markdown("""
     <div class='hero'>
@@ -477,6 +512,8 @@ if st.session_state.page == "quiz":
 
     st.progress(progress)
 
+    st.subheader(f"Question {st.session_state.q_index + 1} of {len(subject_df)}")
+
     st.subheader(question["question"])
 
     answer = st.radio(
@@ -509,16 +546,21 @@ if st.session_state.page == "quiz":
 
         st.session_state.answered += 1
 
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
 
     with col1:
-        if st.button("Next Question"):
+        if st.button("Previous Question"):
+            if st.session_state.q_index > 0:
+                st.session_state.q_index -= 1
+                st.rerun()
 
+    with col2:
+        if st.button("Next Question"):
             if st.session_state.q_index < len(subject_df) - 1:
                 st.session_state.q_index += 1
                 st.rerun()
 
-    with col2:
+    with col3:
         if st.button("Dashboard"):
             st.session_state.page = "dashboard"
             st.rerun()
