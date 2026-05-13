@@ -75,10 +75,13 @@ html, body, [class*="css"] {
     border-radius: 18px;
     text-align:center;
 }
-</style>""", unsafe_allow_html=True)
-st.markdown(
+            
+</style>
+""", unsafe_allow_html=True)
+st.markdown("""
+<style>
 
-.stButton button """{
+.stButton button {
     width: 100%;
     border-radius: 15px;
     height: 3em;
