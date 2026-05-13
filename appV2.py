@@ -81,14 +81,24 @@ html, body, [class*="css"] {
 st.markdown("""
 <style>
 
+h1 {
+    color: #8b5cf6;
+    text-align: center;
+    font-size: 70px;
+}
+
+h2 {
+    color: white;
+}
+
+p {
+    color: lightgray;
+}
+
 .stButton button {
-    width: 100%;
-    border-radius: 15px;
-    height: 3em;
-    border: none;
     background: black;
     color: white;
-    font-weight: bold;
+    border-radius: 15px;
 }
 
 </style>
@@ -335,7 +345,7 @@ if st.session_state.page == "login":
     st.markdown("""
     <div class='hero'>
         <img src="IMG_1779.webp"width="120">
-        <h1>"🎓 5score"</h1>
+        <h1>🎓 5score</h1>
         <h3> AP Exam Practice, free forever.</h3>
         
     </div>
@@ -574,7 +584,7 @@ if st.session_state.page == "quiz":
     
     
     st.header(current_question()["question"], divider = "blue")
-    st.subheader(f"Question written by: {current_question()["created_by"]}")
+
 
     answer = st.radio(
     "Choose an answer:",
