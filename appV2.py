@@ -139,6 +139,9 @@ def get_user_data(username):
 
 
 def add_xp(username, amount):
+    if not username or username == "Guest":
+        return
+
     c.execute(
         "UPDATE users SET xp = xp + ? WHERE username=?",
         (amount, username)
@@ -154,6 +157,10 @@ def get_config_value(name, default=""):
     if hasattr(st, "secrets") and name in st.secrets and st.secrets[name]:
         return st.secrets[name]
     return default
+
+
+def is_guest():
+    return st.session_state.get("guest_mode", False)
 
 
 GOOGLE_CLIENT_ID = get_config_value("GOOGLE_CLIENT_ID")
@@ -238,7 +245,8 @@ DEFAULTS = {
     "submitted": False,
     "iscorrect": None,
     "frq_answer": "",
-    "google_oauth_state": None
+    "google_oauth_state": None,
+    "guest_mode": False
 }
 
 for key, value in DEFAULTS.items():
@@ -259,6 +267,7 @@ if "code" in query_params:
             username = handle_google_login(userinfo)
             if username:
                 st.session_state.logged_in = True
+                st.session_state.guest_mode = False
                 st.session_state.username = username
                 st.session_state.page = "dashboard"
                 st.experimental_set_query_params()
@@ -300,6 +309,7 @@ if st.session_state.page == "login":
 
                     if user:
                         st.session_state.logged_in = True
+                        st.session_state.guest_mode = False
                         st.session_state.username = username
                         st.session_state.page = "dashboard"
                         st.rerun()
@@ -322,6 +332,7 @@ if st.session_state.page == "login":
                         create_user(new_user, new_pass)
                         st.success("Account created. You are now logged in.")
                         st.session_state.logged_in = True
+                        st.session_state.guest_mode = False
                         st.session_state.username = new_user
                         st.session_state.page = "dashboard"
                         st.rerun()
@@ -350,17 +361,28 @@ if st.session_state.page == "login":
             "or add them to .streamlit/secrets.toml."
         )
 
+    if st.button("Continue as Guest"):
+        st.session_state.logged_in = False
+        st.session_state.guest_mode = True
+        st.session_state.username = "Guest"
+        st.session_state.page = "dashboard"
+        st.rerun()
+
 # =========================
 # DASHBOARD
 # =========================
 
 if st.session_state.page == "dashboard":
 
-    user_data = get_user_data(st.session_state.username)
-
-    xp = user_data[2]
-    streak = user_data[3]
-    level = xp // 100
+    if st.session_state.logged_in:
+        user_data = get_user_data(st.session_state.username)
+        xp = user_data[2]
+        streak = user_data[3]
+        level = xp // 100
+    else:
+        xp = 0
+        streak = 0
+        level = 0
 
     st.markdown(f"""
     <div class='hero'>
@@ -368,6 +390,9 @@ if st.session_state.page == "dashboard":
         <h3>Level {level}</h3>
     </div>
     """, unsafe_allow_html=True)
+
+    if is_guest():
+        st.warning("Guest mode is active. Progress will not be saved.")
 
     col1, col2, col3 = st.columns(3)
 
@@ -469,10 +494,13 @@ if st.session_state.page == "quiz":
         selected = answer[0]
 
         if selected == question["correct_answer"]:
-            st.success("Correct! +10 XP")
             st.session_state.correct += 1
-
-            add_xp(st.session_state.username, 10)
+            if st.session_state.logged_in:
+                st.success("Correct! +10 XP")
+                add_xp(st.session_state.username, 10)
+            else:
+                st.success("Correct!")
+                st.info("Guest mode: progress will not be saved.")
 
         else:
             st.error("Incorrect")
@@ -533,10 +561,7 @@ if st.session_state.page == "frq":
         else:
             st.error("Response likely too short")
 
-        add_xp(st.session_state.username, 25)
-
-        st.balloons()
-
-    if st.button("Return Dashboard"):
-        st.session_state.page = "dashboard"
-        st.rerun()
+        if st.session_state.logged_in:
+            add_xp(st.session_state.username, 25)
+        else:
+            st.info("Guest mode: progress will not be saved.")
