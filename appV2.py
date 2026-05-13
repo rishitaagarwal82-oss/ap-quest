@@ -237,10 +237,10 @@ for key, value in DEFAULTS.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
-query_params = st.experimental_get_query_params()
+query_params = st.query_params
 if "code" in query_params:
-    code = query_params["code"][0]
-    state = query_params.get("state", [""])[0]
+    code = query_params["code"]
+    state = query_params.get("state", "")
 
     if state != st.session_state.google_oauth_state:
         st.error("Google sign-in failed due to invalid state.")
