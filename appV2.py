@@ -1,4 +1,9 @@
 
+import os
+import secrets
+from urllib.parse import urlencode
+
+import requests
 import streamlit as st
 import pandas as pd
 import sqlite3
@@ -143,6 +148,63 @@ def add_xp(username, amount):
     conn.commit()
 
 
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
+GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8501")
+GOOGLE_SCOPE = "openid email profile"
+GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
+GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
+GOOGLE_USERINFO_URL = "https://openidconnect.googleapis.com/v1/userinfo"
+
+
+def get_google_auth_url():
+    state = secrets.token_urlsafe(16)
+    st.session_state.google_oauth_state = state
+    params = {
+        "client_id": GOOGLE_CLIENT_ID,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "response_type": "code",
+        "scope": GOOGLE_SCOPE,
+        "state": state,
+        "access_type": "offline",
+        "prompt": "select_account"
+    }
+    return f"{GOOGLE_AUTH_URL}?{urlencode(params)}"
+
+
+def exchange_google_code(code):
+    data = {
+        "code": code,
+        "client_id": GOOGLE_CLIENT_ID,
+        "client_secret": GOOGLE_CLIENT_SECRET,
+        "redirect_uri": GOOGLE_REDIRECT_URI,
+        "grant_type": "authorization_code"
+    }
+    response = requests.post(GOOGLE_TOKEN_URL, data=data)
+    return response.json() if response.ok else None
+
+
+def get_google_userinfo(access_token):
+    response = requests.get(
+        GOOGLE_USERINFO_URL,
+        headers={"Authorization": f"Bearer {access_token}"}
+    )
+    return response.json() if response.ok else None
+
+
+def handle_google_login(userinfo):
+    email = userinfo.get("email")
+    if not email:
+        return None
+
+    username = email
+    existing = get_user_data(username)
+    if not existing:
+        create_user(username, secrets.token_urlsafe(32))
+
+    return username
+
+
 # =========================
 # LOAD QUESTIONS
 # =========================
@@ -167,12 +229,36 @@ DEFAULTS = {
     "answered": 0,
     "submitted": False,
     "iscorrect": None,
-    "frq_answer": ""
+    "frq_answer": "",
+    "google_oauth_state": None
 }
 
 for key, value in DEFAULTS.items():
     if key not in st.session_state:
         st.session_state[key] = value
+
+query_params = st.experimental_get_query_params()
+if "code" in query_params:
+    code = query_params["code"][0]
+    state = query_params.get("state", [""])[0]
+
+    if state != st.session_state.google_oauth_state:
+        st.error("Google sign-in failed due to invalid state.")
+    else:
+        token_data = exchange_google_code(code)
+        if token_data and "access_token" in token_data:
+            userinfo = get_google_userinfo(token_data["access_token"])
+            username = handle_google_login(userinfo)
+            if username:
+                st.session_state.logged_in = True
+                st.session_state.username = username
+                st.session_state.page = "dashboard"
+                st.experimental_set_query_params()
+                st.experimental_rerun()
+            else:
+                st.error("Unable to read Google account information.")
+        else:
+            st.error("Google sign-in failed. Please try again.")
 
 # =========================
 # LOGIN PAGE
@@ -182,8 +268,8 @@ if st.session_state.page == "login":
 
     st.markdown("""
     <div class='hero'>
-        <h1>🔥 5score</h1>
-        <h3>Gamified AP Exam Practice</h3>
+        <h1> 5score</h1>
+        <h3>Fun AP Exam Practice</h3>
         <p>Level up your AP skills and earn XP.</p>
     </div>
     """, unsafe_allow_html=True)
@@ -193,32 +279,65 @@ if st.session_state.page == "login":
     with tab1:
         st.subheader("Welcome Back")
 
-        username = st.text_input("Username")
-        password = st.text_input("Password", type="password")
+        with st.form("login_form"):
+            username = st.text_input("Username", key="login_username")
+            password = st.text_input("Password", type="password", key="login_password")
+            login_clicked = st.form_submit_button("Login")
 
-        if st.button("Login"):
-            user = login_user(username, password)
+            if login_clicked:
+                if not username or not password:
+                    st.warning("Please enter both username and password.")
+                else:
+                    user = login_user(username, password)
 
-            if user:
-                st.session_state.logged_in = True
-                st.session_state.username = username
-                st.session_state.page = "dashboard"
-                st.rerun()
-            else:
-                st.error("Invalid credentials")
+                    if user:
+                        st.session_state.logged_in = True
+                        st.session_state.username = username
+                        st.session_state.page = "dashboard"
+                        st.rerun()
+                    else:
+                        st.error("Invalid credentials. Check your username and password.")
 
     with tab2:
         st.subheader("Create Account")
 
-        new_user = st.text_input("Create Username")
-        new_pass = st.text_input("Create Password", type="password")
+        with st.form("signup_form"):
+            new_user = st.text_input("Create Username", key="signup_username")
+            new_pass = st.text_input("Create Password", type="password", key="signup_password")
+            signup_clicked = st.form_submit_button("Create Account")
 
-        if st.button("Create Account"):
-            try:
-                create_user(new_user, new_pass)
-                st.success("Account created")
-            except:
-                st.error("Username already exists")
+            if signup_clicked:
+                if not new_user or not new_pass:
+                    st.warning("Please enter both a username and password.")
+                else:
+                    try:
+                        create_user(new_user, new_pass)
+                        st.success("Account created. You are now logged in.")
+                        st.session_state.logged_in = True
+                        st.session_state.username = new_user
+                        st.session_state.page = "dashboard"
+                        st.rerun()
+                    except sqlite3.IntegrityError:
+                        st.error("Username already exists. Choose a different one.")
+                    except Exception:
+                        st.error("Unable to create account. Please try again.")
+
+    st.markdown("<div style='margin: 1rem 0; text-align:center; color:#94a3b8;'>or</div>", unsafe_allow_html=True)
+
+    if GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET:
+        google_auth_url = get_google_auth_url()
+        st.markdown(
+            f"<div style='text-align:center;'>"
+            f"<a href='{google_auth_url}' style='text-decoration:none;'>"
+            f"<button style='width:100%; padding:0.75rem 1rem; border:none; border-radius:15px; background:#4285F4; color:white; font-weight:bold; cursor:pointer;'>"
+            f"Continue with Google"
+            f"</button>"
+            f"</a>"
+            f"</div>",
+            unsafe_allow_html=True
+        )
+    else:
+        st.info("Google OAuth is not configured. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in environment variables.")
 
 # =========================
 # DASHBOARD
