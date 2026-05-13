@@ -306,8 +306,8 @@ if "code" in query_params:
             st.session_state.guest_mode = False
             st.session_state.username = username
             st.session_state.page = "dashboard"
-            st.experimental_set_query_params()
-            st.experimental_rerun()
+            st.query_params.clear()
+            st.rerun()
         else:
             st.error("Unable to read Google account information.")
     else:
