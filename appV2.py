@@ -81,23 +81,22 @@ html, body, [class*="css"] {
 st.markdown("""
 <style>
 
+h1, h2, h3, p {
+    color: white !important;
+}
+
 h1 {
-    color: #8b5cf6;
-    text-align: center;
-    font-size: 70px;
+    font-size: 70px !important;
+    text-align: center !important;
 }
 
-h2 {
-    color: white;
-}
-
-p {
-    color: lightgray;
+.stApp {
+    background: black;
 }
 
 .stButton button {
-    background: black;
-    color: white;
+    background: purple !important;
+    color: white !important;
     border-radius: 15px;
 }
 
