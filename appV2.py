@@ -83,11 +83,12 @@ st.markdown("""
 
 h1, h2, h3, p {
     color: white !important;
+    font-family: 'Zen Dots', sans-serif !important;
 }
 
 h1 {
     font-size: 70px !important;
-    text-align: center !important;
+    font-family: 'Zen Dots', sans-serif !important;
 }
 
 .stApp {
