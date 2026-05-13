@@ -298,20 +298,20 @@ if "code" in query_params:
         # Continue instead of failing
 
     token_data = exchange_google_code(code)
-        if token_data and "access_token" in token_data:
-            userinfo = get_google_userinfo(token_data["access_token"])
-            username = handle_google_login(userinfo)
-            if username:
-                st.session_state.logged_in = True
-                st.session_state.guest_mode = False
-                st.session_state.username = username
-                st.session_state.page = "dashboard"
-                st.experimental_set_query_params()
-                st.experimental_rerun()
-            else:
-                st.error("Unable to read Google account information.")
+    if token_data and "access_token" in token_data:
+        userinfo = get_google_userinfo(token_data["access_token"])
+        username = handle_google_login(userinfo)
+        if username:
+            st.session_state.logged_in = True
+            st.session_state.guest_mode = False
+            st.session_state.username = username
+            st.session_state.page = "dashboard"
+            st.experimental_set_query_params()
+            st.experimental_rerun()
         else:
-            st.error("Google sign-in failed. Please try again.")
+            st.error("Unable to read Google account information.")
+    else:
+        st.error("Google sign-in failed. Please try again.")
 
 # =========================
 # LOGIN PAGE
