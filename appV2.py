@@ -272,13 +272,16 @@ DEFAULTS = {
     "page": "login",
     "subject": None,
     "q_index": 0,
-    "correct": 0,
-    "answered": 0,
     "submitted": False,
     "iscorrect": None,
     "frq_answer": "",
     "google_oauth_state": None,
-    "guest_mode": False
+    "guest_mode": False,
+    "questions_answered": 0,
+    "correct_items": 0,
+    "first_try": {},
+    "last_q": None,
+    "ap": None
 }
 
 for key, value in DEFAULTS.items():
@@ -478,10 +481,9 @@ if st.session_state.page == "dashboard":
 
             if st.button(f"Practice {subject}"):
                 st.session_state.subject = subject
+                st.session_state.ap = subject
                 st.session_state.page = "quiz"
                 st.session_state.q_index = 0
-                st.session_state.correct = 0
-                st.session_state.answered = 0
                 st.rerun()
 
             st.markdown("</div>", unsafe_allow_html=True)
@@ -497,73 +499,114 @@ if st.session_state.page == "dashboard":
 # =========================
 
 if st.session_state.page == "quiz":
+    disabled = st.session_state.submitted and st.session_state.iscorrect is True
+    st.title( st.session_state.ap + " style questions")     
+    ap_questions = df[df["ap"] == st.session_state.ap]
+    
+    total = len(ap_questions)
 
-    st.title(f"📚 {st.session_state.subject}")
+    if total == 0:
+        st.warning("No questions available for this AP subject. Return home to choose a different quiz.")
+        
+    progress = (st.session_state.questions_answered / total) 
+    st.write(f"Question {st.session_state.questions_answered} of {total}")
+    st.progress(progress, text=f"{int(progress * 100)}%")
+    if progress > 1:
+        st.progress(1.0, text="100%")
 
-    subject_df = df[df["ap"] == st.session_state.subject]
 
-    if len(subject_df) == 0:
-        st.warning("No questions found")
+    if  st.session_state.q_index>=total:
+        if st.session_state.questions_answered > 0:
+           
+            
+
+            score = st.session_state.correct_items / st.session_state.questions_answered
+        else:
+            score = 0
+
+        st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
+        if st.button("Return Home"):
+            st.session_state.q_index = 0
+            st.session_state.correct_items = 0
+            st.session_state.questions_answered = 0
+            st.session_state.first_try = {}
+            st.session_state.page = "dashboard"
         st.stop()
 
-    question = subject_df.iloc[st.session_state.q_index]
-
-    progress = st.session_state.q_index / len(subject_df)
-
-    st.progress(progress)
-
-    st.subheader(f"Question {st.session_state.q_index + 1} of {len(subject_df)}")
-
-    st.subheader(question["question"])
+    def current_question():
+        return ap_questions.iloc[st.session_state.q_index] 
+    if st.button("⬅ Back"):
+        st.session_state.page = "dashboard"
+        st.session_state.q_index = 0
+        st.session_state.submitted = False
+        st.session_state.iscorrect = None
+        st.session_state.correct_items = 0
+        st.session_state.questions_answered = 0
+        st.session_state.first_try = {}
+        st.rerun()
+    
+    if "last_q" not in st.session_state:
+        st.session_state.last_q = None
+    if st.session_state.q_index != st.session_state.last_q:
+        st.session_state.submitted = False
+        st.session_state.iscorrect = None
+        st.session_state.last_q = st.session_state.q_index
+    
+    
+    
+    st.header(current_question()["question"], divider = "blue")
+    st.subheader(f"Question written by: {current_question()["created_by"]}")
 
     answer = st.radio(
-        "Choose an answer",
-        [
-            f"A. {question['choice_a']}",
-            f"B. {question['choice_b']}",
-            f"C. {question['choice_c']}",
-            f"D. {question['choice_d']}"
-        ]
+    "Choose an answer:",
+    [
+        f"A — {current_question()['choice_a']}",
+        f"B — {current_question()['choice_b']}",
+        f"C — {current_question()['choice_c']}",
+        f"D — {current_question()['choice_d']}",
+    ],
+    disabled=st.session_state.submitted,
+    key=f"q_{st.session_state.q_index}"
     )
+    selected_letter = answer[0]
+ 
 
-    if st.button("Submit"):
+    
+ # SUBMISSION
 
-        selected = answer[0]
-
-        if selected == question["correct_answer"]:
-            st.session_state.correct += 1
-            if st.session_state.logged_in:
-                st.success("Correct! +10 XP")
-                add_xp(st.session_state.username, 10)
-            else:
-                st.success("Correct!")
-                st.info("Guest mode: progress will not be saved.")
-
-        else:
-            st.error("Incorrect")
-
-        st.write(question["explanation"])
-
-        st.session_state.answered += 1
-
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        if st.button("Previous Question"):
-            if st.session_state.q_index > 0:
-                st.session_state.q_index -= 1
+    if st.button("Submit",disabled=st.session_state.submitted) and not st.session_state.submitted:
+        st.session_state.submitted = True
+        is_correct = selected_letter == current_question()["correct_answer"]
+        if st.session_state.q_index not in st.session_state.first_try:
+            st.session_state.first_try[st.session_state.q_index] = is_correct
+            st.session_state.questions_answered += 1
+            if is_correct:
+                st.session_state.correct_items+=1
+        st.session_state.iscorrect = is_correct
+        
+         
+            
+        st.rerun()
+ # RESULTS
+    if st.session_state.submitted:
+        
+        if st.session_state.iscorrect == True:
+            st.success("Correct✅")        
+            st.write("Explanation:", current_question()["explanation"])
+           
+            if st.button("Next"):
+                st.session_state.q_index +=1
+                st.session_state.iscorrect = None
+                st.session_state.submitted = False
                 st.rerun()
+        elif st.session_state.iscorrect == False:
+            st.error("Incorrect❌")
 
-    with col2:
-        if st.button("Next Question"):
-            if st.session_state.q_index < len(subject_df) - 1:
-                st.session_state.q_index += 1
+            if st.button("Try again"):
+                st.session_state.submitted = False
+                st.session_state.iscorrect = None
                 st.rerun()
-
-    with col3:
-        if st.button("Dashboard"):
-            st.session_state.page = "dashboard"
-            st.rerun()
+        st.write("Correct questions:", st.session_state.correct_items)
 
 # =========================
 # FRQ PAGE
