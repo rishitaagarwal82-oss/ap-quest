@@ -96,9 +96,10 @@ h1 {
 }
 
 .stButton button {
-    background: purple !important;
+    background: black !important;
     color: white !important;
     border-radius: 15px;
+    border-color: #334155 !important;
 }
 
 </style>
