@@ -76,9 +76,9 @@ html, body, [class*="css"] {
     text-align:center;
 }
 </style>""", unsafe_allow_html=True)
-st.markdown("""
+st.markdown(
 
-.stButton button {
+.stButton button """{
     width: 100%;
     border-radius: 15px;
     height: 3em;
@@ -332,7 +332,7 @@ if st.session_state.page == "login":
     st.markdown("""
     <div class='hero'>
         <img src="IMG_1779.webp"width="120">
-        <h1>st.title"🎓 5score"</h1>
+        <h1>"🎓 5score"</h1>
         <h3> AP Exam Practice, free forever.</h3>
         
     </div>
