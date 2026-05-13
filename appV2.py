@@ -17,14 +17,16 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="5score",
-    page_icon="🔥",
+    page_icon="IMG_1779.webp",
     layout="wide"
 )
 
 # =========================
 # CUSTOM CSS
 # =========================
-
+st.markdown("""
+<link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+""",unsafe_allow_html=True)
 st.markdown("""
 <style>
 
@@ -41,11 +43,11 @@ header {
 }
 
 html, body, [class*="css"] {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Zen Dots', sans-serif;
 }
 
 .stApp {
-    background: linear-gradient(to bottom right, #0f172a, #111827);
+    background: black;
     color: white;
 }
 
@@ -57,7 +59,7 @@ html, body, [class*="css"] {
 }
 
 .subject-card {
-    background: #1e293b;
+    background: #6AB6BA;
     padding: 1rem;
     border-radius: 18px;
     text-align: center;
@@ -65,7 +67,7 @@ html, body, [class*="css"] {
 }
 
 .xp-box {
-    background: #1d4ed8;
+    background: #A700BD;
     padding: 1rem;
     border-radius: 18px;
     text-align:center;
@@ -76,12 +78,9 @@ html, body, [class*="css"] {
     border-radius: 15px;
     height: 3em;
     border: none;
-    background: linear-gradient(90deg,#3b82f6,#8b5cf6);
+        background: black;
     color: white;
-    font-weight: bold;
-}
-
-</style>
+    font-weight: bold;  
 """, unsafe_allow_html=True)
 
 # =========================
@@ -148,9 +147,18 @@ def add_xp(username, amount):
     conn.commit()
 
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
-GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI", "http://localhost:8501")
+def get_config_value(name, default=""):
+    env_value = os.getenv(name)
+    if env_value:
+        return env_value
+    if hasattr(st, "secrets") and name in st.secrets and st.secrets[name]:
+        return st.secrets[name]
+    return default
+
+
+GOOGLE_CLIENT_ID = get_config_value("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = get_config_value("GOOGLE_CLIENT_SECRET")
+GOOGLE_REDIRECT_URI = get_config_value("GOOGLE_REDIRECT_URI", "http://localhost:8501")
 GOOGLE_SCOPE = "openid email profile"
 GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
 GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
@@ -239,8 +247,8 @@ for key, value in DEFAULTS.items():
 
 query_params = st.query_params
 if "code" in query_params:
-    code = query_params["code"]
-    state = query_params.get("state", "")
+    code = query_params["code"][0] if isinstance(query_params["code"], list) else query_params["code"]
+    state = query_params.get("state", [""])[0]
 
     if state != st.session_state.google_oauth_state:
         st.error("Google sign-in failed due to invalid state.")
@@ -268,7 +276,7 @@ if st.session_state.page == "login":
 
     st.markdown("""
     <div class='hero'>
-        <h1> 5score</h1>
+        <h1>5score</h1>
         <h3>Fun AP Exam Practice</h3>
         <p>Level up your AP skills and earn XP.</p>
     </div>
@@ -337,7 +345,10 @@ if st.session_state.page == "login":
             unsafe_allow_html=True
         )
     else:
-        st.info("Google OAuth is not configured. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in environment variables.")
+        st.info(
+            "Google OAuth is not configured. Set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in environment variables "
+            "or add them to .streamlit/secrets.toml."
+        )
 
 # =========================
 # DASHBOARD
