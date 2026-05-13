@@ -75,6 +75,8 @@ html, body, [class*="css"] {
     border-radius: 18px;
     text-align:center;
 }
+</style>""", unsafe_allow_html=True)
+st.markdown("""
 
 .stButton button {
     width: 100%;
@@ -85,17 +87,8 @@ html, body, [class*="css"] {
     color: white;
     font-weight: bold;
 }
-</style>
-""", unsafe_allow_html=True)
 
-.stButton button {
-    width: 100%;
-    border-radius: 15px;
-    height: 3em;
-    border: none;
-        background: black;
-    color: white;
-    font-weight: bold;  
+</style>
 """, unsafe_allow_html=True)
 
 # =========================
