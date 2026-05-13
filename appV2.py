@@ -416,9 +416,14 @@ if st.session_state.page == "dashboard":
 
     if st.session_state.logged_in:
         user_data = get_user_data(st.session_state.username)
-        xp = user_data[2]
-        streak = user_data[3]
-        level = xp // 100
+        if user_data:
+            xp = user_data[2]
+            streak = user_data[3]
+            level = xp // 100
+        else:
+            xp = 0
+            streak = 0
+            level = 0
     else:
         xp = 0
         streak = 0
@@ -518,6 +523,7 @@ if st.session_state.page == "quiz":
 
 
     if  st.session_state.q_index>=total:
+        st.balloons()
         if st.session_state.questions_answered > 0:
            
             
@@ -527,7 +533,7 @@ if st.session_state.page == "quiz":
             score = 0
 
         st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
-        st.balloons()
+        
         if st.button("Return Home"):
             st.session_state.q_index = 0
             st.session_state.correct_items = 0
