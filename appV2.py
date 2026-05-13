@@ -18,7 +18,7 @@ from datetime import datetime
 
 st.set_page_config(
     page_title="5score",
-    page_icon="yuh.png",
+    page_icon="🎓",
     layout="wide"
 )
 
@@ -27,9 +27,11 @@ st.set_page_config(
 # =========================
 st.markdown("""
 <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
-""",unsafe_allow_html=True)
-st.markdown("""
+
 <style>
+html, body, .stApp, button, input, textarea {
+    font-family: 'Zen Dots', sans-serif !important;
+}
 
 #MainMenu {
     visibility:hidden;
@@ -73,6 +75,18 @@ html, body, [class*="css"] {
     border-radius: 18px;
     text-align:center;
 }
+
+.stButton button {
+    width: 100%;
+    border-radius: 15px;
+    height: 3em;
+    border: none;
+    background: black;
+    color: white;
+    font-weight: bold;
+}
+</style>
+""", unsafe_allow_html=True)
 
 .stButton button {
     width: 100%;
@@ -325,7 +339,7 @@ if st.session_state.page == "login":
     st.markdown("""
     <div class='hero'>
         <img src="IMG_1779.webp"width="120">
-        <h1>5score</h1>
+        <h1>st.title"🎓 5score"</h1>
         <h3> AP Exam Practice, free forever.</h3>
         
     </div>
