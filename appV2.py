@@ -525,6 +525,7 @@ if st.session_state.page == "quiz":
             score = 0
 
         st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
+        st.balloons()
         if st.button("Return Home"):
             st.session_state.q_index = 0
             st.session_state.correct_items = 0
@@ -606,7 +607,7 @@ if st.session_state.page == "quiz":
                 st.session_state.submitted = False
                 st.session_state.iscorrect = None
                 st.rerun()
-        st.write("Correct questions:", st.session_state.correct_items)
+                st.write("Correct questions:", st.session_state.correct_items)
 
 # =========================
 # FRQ PAGE
