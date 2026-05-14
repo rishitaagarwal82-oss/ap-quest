@@ -70,7 +70,7 @@ html, body, [class*="css"] {
 }
 
 .xp-box {
-    background: #A700BD;
+    background: blue;
     padding: 1rem;
     border-radius: 18px;
     text-align:center;
