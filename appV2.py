@@ -519,9 +519,20 @@ if st.session_state.page == "dashboard":
     st.divider()
 
     if st.button("FRQ Practice"):
-        st.session_state.page = "frq"
+        st.session_state.page = "selectap"
         st.rerun()
+    if st.session_state.page == "selectap":
+        colsFRQ = st.columns(3)
 
+        for i, subject in enumerate(subjects):
+            with colsFRQ[i % 3]:
+                st.markdown("<div class='subject-card'>", unsafe_allow_html=True)
+
+                st.subheader(subject)
+                if st.button(f"Practice {subject} FRQs"):
+                    st.session_state.ap = subject
+                    st.session_state.page = "frq"
+                    st.rerun()
 # =========================
 # QUIZ PAGE
 # =========================
@@ -611,10 +622,11 @@ if st.session_state.page == "quiz":
             st.session_state.first_try[st.session_state.q_index] = is_correct
             st.session_state.questions_answered += 1
             if is_correct:
-                st.session_state.correct_items+=1
+                st.session_state.correct_items += 1
+                if st.session_state.logged_in:
+                    add_xp(st.session_state.username, 10)
         st.session_state.iscorrect = is_correct
         
-         
             
         st.rerun()
  # RESULTS
