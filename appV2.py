@@ -526,6 +526,7 @@ if st.session_state.page == "dashboard":
         st.session_state.mode = "frq"   
         st.session_state.q_index = 0
         st.session_state.page = "selectap"
+        st.rerun()
     if st.session_state.page == "selectap":
         col_1, col_2, col_3 = st.columns(3)
         colsFRQ = st.columns(3)
@@ -536,9 +537,12 @@ if st.session_state.page == "dashboard":
                 st.subheader(subject)
                 if st.button(f"Practice {subject} FRQs"):
                     st.session_state.ap = subject
+                    st.session_state.q_index = 0
+                    st.session_state.submitted = False
+                    st.session_state.frq_answered = 0
+                    st.session_state.ap = subject
                     st.session_state.page = "frq"
                     st.rerun()
-    i
 # =========================
 # QUIZ PAGE
 # =========================
@@ -663,8 +667,6 @@ if st.session_state.page == "quiz":
 # =========================
 # FRQ PAGE
 # =========================
-if st.session_state.page != "frq":
-    st.session_state.submitted = False
 if st.session_state.page == "frq":
    
     st.title(st.session_state.ap + " style FRQ practice")
