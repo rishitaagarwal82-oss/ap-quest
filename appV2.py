@@ -521,34 +521,6 @@ if st.session_state.page == "dashboard":
     if st.button("FRQ Practice"):
         st.session_state.page = "selectap"
     if st.session_state.page == "selectap":
-        col_1, col_2, col_3 = st.columns(3)
-
-        with col_1:
-            st.markdown(f"""
-            <div class='xp-box'>
-                <h2>{xp}</h2>
-                <p>Total XP</p>
-            </div>
-            """, unsafe_allow_html=True)
-
-        with col_2:
-            st.markdown(f"""
-            <div class='xp-box'>
-                <h2>{streak}</h2>
-                <p>Current Streak</p>
-            </div>
-            """, unsafe_allow_html=True)
-
-        with col_3:
-            st.markdown(f"""
-            <div class='xp-box'>
-                <h2>{level}</h2>
-                <p>Level</p>
-            </div>
-            """, unsafe_allow_html=True)
-    
-        colsFRQ = st.columns(3)
-
         for i, subject in enumerate(subjects):
             with colsFRQ[i % 3]:
                 st.markdown("<div class='subject-card'>", unsafe_allow_html=True)
