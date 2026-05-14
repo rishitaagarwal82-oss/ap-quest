@@ -262,10 +262,12 @@ def get_google_userinfo(access_token):
 
 def handle_google_login(userinfo):
     email = userinfo.get("email")
+    name = userinfo.get("name", "")
     if not email:
         return None
 
-    username = email
+    # Use name as username if available, otherwise use email
+    username = name if name else email
     existing = get_user_data(username)
     if not existing:
         create_user(username, secrets.token_urlsafe(32))
@@ -312,6 +314,12 @@ for key, value in DEFAULTS.items():
     if key not in st.session_state:
         st.session_state[key] = value
 
+# Initialize XP and streak if not present
+if "xp" not in st.session_state:
+    st.session_state.xp = 0
+if "streak" not in st.session_state:
+    st.session_state.streak = 0
+
 query_params = st.query_params
 if "code" in query_params:
     code = query_params["code"][0] if isinstance(query_params["code"], list) else query_params["code"]
@@ -329,6 +337,11 @@ if "code" in query_params:
             st.session_state.logged_in = True
             st.session_state.guest_mode = False
             st.session_state.username = username
+            # Load user XP from database
+            user_data = get_user_data(username)
+            if user_data:
+                st.session_state.xp = user_data[2]
+                st.session_state.streak = user_data[3]
             st.session_state.page = "dashboard"
             st.query_params.clear()
             st.rerun()
@@ -375,6 +388,9 @@ if st.session_state.page == "login":
                         st.session_state.logged_in = True
                         st.session_state.guest_mode = False
                         st.session_state.username = username
+                        # Load user XP from database
+                        st.session_state.xp = user[2]
+                        st.session_state.streak = user[3]
                         st.session_state.page = "dashboard"
                         st.rerun()
                     else:
@@ -398,6 +414,9 @@ if st.session_state.page == "login":
                         st.session_state.logged_in = True
                         st.session_state.guest_mode = False
                         st.session_state.username = new_user
+                        # Load user XP from database (will be 0 for new users)
+                        st.session_state.xp = 0
+                        st.session_state.streak = 0
                         st.session_state.page = "dashboard"
                         st.rerun()
                     except sqlite3.IntegrityError:
@@ -448,15 +467,10 @@ subjects = [
 if st.session_state.page == "dashboard":
 
     if st.session_state.logged_in:
-        user_data = get_user_data(st.session_state.username)
-        if user_data:
-            xp = user_data[2]
-            streak = user_data[3]
-            level = xp // 100
-        else:
-            xp = 0
-            streak = 0
-            level = 0
+        # Use XP from session state (loaded at login)
+        xp = st.session_state.get("xp", 0)
+        streak = st.session_state.get("streak", 0)
+        level = xp // 100
     else:
         xp = 0
         streak = 0
@@ -579,7 +593,6 @@ if st.session_state.page == "quiz":
 
 
     if  st.session_state.q_index>=total:
-        st.balloons()
         if st.session_state.questions_answered > 0:
            
             
@@ -588,6 +601,7 @@ if st.session_state.page == "quiz":
         else:
             score = 0
 
+        st.balloons()
         st.success(f"🎉 You finished! Your score is {score * 100:.1f}%!")
         
         if st.button("Return Home"):
@@ -595,7 +609,8 @@ if st.session_state.page == "quiz":
             st.session_state.correct_items = 0
             st.session_state.questions_answered = 0
             st.session_state.first_try = {}
-            st.session_state.page = "home"
+            st.session_state.page = "dashboard"
+            st.rerun()
         st.stop()
 
     def current_question():
@@ -609,7 +624,7 @@ if st.session_state.page == "quiz":
         st.session_state.first_try = {}
         st.rerun()
     def go_back():
-        st.session_state.page = "home"
+        st.session_state.page = "dashboard"
         reset_quiz()
     if st.button("⬅ Back"):
         reset_quiz()
