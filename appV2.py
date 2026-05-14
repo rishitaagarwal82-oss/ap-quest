@@ -436,6 +436,15 @@ if st.session_state.page == "login":
 # DASHBOARD
 # =========================
 
+subjects = [
+    "AP Biology",
+    "AP Chemistry",
+    "AP Psychology",
+    "AP Calculus AB",
+    "AP Computer Science A",
+    "AP World History"
+]
+
 if st.session_state.page == "dashboard":
 
     if st.session_state.logged_in:
@@ -527,22 +536,26 @@ if st.session_state.page == "dashboard":
         st.session_state.q_index = 0
         st.session_state.page = "selectap"
         st.rerun()
-    if st.session_state.page == "selectap":
-        col_1, col_2, col_3 = st.columns(3)
-        colsFRQ = st.columns(3)
-        for i, subject in enumerate(subjects):
-            with colsFRQ[i % 3]:
-                st.markdown("<div class='subject-card'>", unsafe_allow_html=True)
 
-                st.subheader(subject)
-                if st.button(f"Practice {subject} FRQs"):
-                    st.session_state.ap = subject
-                    st.session_state.q_index = 0
-                    st.session_state.submitted = False
-                    st.session_state.frq_answered = 0
-                    st.session_state.ap = subject
-                    st.session_state.page = "frq"
-                    st.rerun()
+# =========================
+# SELECT AP FOR FRQ
+# =========================
+
+if st.session_state.page == "selectap":
+    colsFRQ = st.columns(3)
+    for i, subject in enumerate(subjects):
+        with colsFRQ[i % 3]:
+            st.markdown("<div class='subject-card'>", unsafe_allow_html=True)
+            st.subheader(subject)
+            if st.button(f"Practice {subject} FRQs"):
+                st.session_state.ap = subject
+                st.session_state.q_index = 0
+                st.session_state.submitted = False
+                st.session_state.frq_answered = 0
+                st.session_state.page = "frq"
+                st.rerun()
+            st.markdown("</div>", unsafe_allow_html=True)
+
 # =========================
 # QUIZ PAGE
 # =========================
