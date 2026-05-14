@@ -627,7 +627,7 @@ if st.session_state.page == "quiz":
         st.session_state.page = "dashboard"
         reset_quiz()
     if st.button("⬅ Back"):
-        reset_quiz()
+        go_back()
     
     if "last_q" not in st.session_state:
         st.session_state.last_q = None
@@ -668,6 +668,7 @@ if st.session_state.page == "quiz":
                 st.session_state.correct_items += 1
                 if st.session_state.logged_in:
                     add_xp(st.session_state.username, 10)
+                    st.session_state.xp += 10
         st.session_state.iscorrect = is_correct
         
             
@@ -741,6 +742,7 @@ if st.session_state.page == "frq":
 
         if st.session_state.logged_in:
             add_xp(st.session_state.username, 25)
+            st.session_state.xp += 25
         else:
             st.info("Guest mode: progress will not be saved.")
     if st.button("Next FRQ", disabled=not st.session_state.submitted):
