@@ -279,6 +279,7 @@ def handle_google_login(userinfo):
 
 try:
     df = pd.read_csv("questions.csv")
+    frq_df = pd.read_csv("frqs.csv")
 except:
     st.error("questions.csv not found")
     st.stop()
@@ -302,7 +303,9 @@ DEFAULTS = {
     "correct_items": 0,
     "first_try": {},
     "last_q": None,
-    "ap": None
+    "ap": None,
+    "mode": "mcq",
+    "frq_answered": 0
 }
 
 for key, value in DEFAULTS.items():
@@ -507,7 +510,8 @@ if st.session_state.page == "dashboard":
 
             st.subheader(subject)
 
-            if st.button(f"Practice {subject}"):
+            if st.button(f"Practice {subject} MCQs"):
+                st.session_state.mode = "mcq"
                 st.session_state.subject = subject
                 st.session_state.ap = subject
                 st.session_state.page = "quiz"
@@ -519,6 +523,8 @@ if st.session_state.page == "dashboard":
     st.divider()
 
     if st.button("FRQ Practice"):
+        st.session_state.mode = "frq"   
+        st.session_state.q_index = 0
         st.session_state.page = "selectap"
     if st.session_state.page == "selectap":
         col_1, col_2, col_3 = st.columns(3)
@@ -532,6 +538,7 @@ if st.session_state.page == "dashboard":
                     st.session_state.ap = subject
                     st.session_state.page = "frq"
                     st.rerun()
+    i
 # =========================
 # QUIZ PAGE
 # =========================
@@ -570,13 +577,12 @@ if st.session_state.page == "quiz":
             st.session_state.correct_items = 0
             st.session_state.questions_answered = 0
             st.session_state.first_try = {}
-            st.session_state.page = "dashboard"
+            st.session_state.page = "home"
         st.stop()
 
     def current_question():
         return ap_questions.iloc[st.session_state.q_index] 
-    if st.button("⬅ Back"):
-        st.session_state.page = "dashboard"
+    def reset_quiz():
         st.session_state.q_index = 0
         st.session_state.submitted = False
         st.session_state.iscorrect = None
@@ -584,6 +590,11 @@ if st.session_state.page == "quiz":
         st.session_state.questions_answered = 0
         st.session_state.first_try = {}
         st.rerun()
+    def go_back():
+        st.session_state.page = "home"
+        reset_quiz()
+    if st.button("⬅ Back"):
+        reset_quiz()
     
     if "last_q" not in st.session_state:
         st.session_state.last_q = None
@@ -652,32 +663,42 @@ if st.session_state.page == "quiz":
 # =========================
 # FRQ PAGE
 # =========================
-
+if st.session_state.page != "frq":
+    st.session_state.submitted = False
 if st.session_state.page == "frq":
+   
+    st.title(st.session_state.ap + " style FRQ practice")
+    filtered_frq = frq_df[frq_df["ap"] == st.session_state.ap]
+    total = len(filtered_frq)
+    if st.session_state.q_index >= total:
+        st.success("FRQ set complete 🎉")
+        st.stop()
 
-    st.title("✍️ FRQ Practice")
+    progress = 0
+    if total > 0:
+        progress = st.session_state.frq_answered / total
 
-    prompts = [
-        "Explain how natural selection contributes to evolution.",
-        "Describe ONE cause of the Great Depression.",
-        "Explain polymorphism in object-oriented programming."
-    ]
+    st.write(f"FRQs completed: {st.session_state.frq_answered} / {total}")
+    st.progress(min(progress, 1.0))
+    def current_frq():
+        return filtered_frq.iloc[st.session_state.q_index]
 
-    prompt = random.choice(prompts)
 
-    st.info(prompt)
+    st.info(current_frq()["frq"])
 
     response = st.text_area(
         "Write your FRQ response",
-        height=300
+        height=300,
+        key="frq_answer"
     )
 
-    if st.button("Submit FRQ"):
-
+    if st.button("Submit FRQ", disabled=st.session_state.submitted):
+        st.session_state.submitted = True
         word_count = len(response.split())
 
         st.success("FRQ Submitted")
-
+        st.session_state.frq_answered += 1
+        st.write("Sample High-Siocoring Response:", current_frq()["sample_answer"])
         st.write(f"Word Count: {word_count}")
 
         if word_count > 150:
@@ -691,3 +712,7 @@ if st.session_state.page == "frq":
             add_xp(st.session_state.username, 25)
         else:
             st.info("Guest mode: progress will not be saved.")
+    if st.button("Next FRQ", disabled=not st.session_state.submitted):
+        st.session_state.q_index += 1
+        st.session_state.submitted = False
+        st.rerun()

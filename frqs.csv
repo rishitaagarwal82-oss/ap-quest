@@ -1,28 +1,28 @@
-frq,sample_answer
-"AP Biology: Explain how a mutation in DNA can affect protein synthesis and potentially change a phenotype.","A mutation in DNA can alter the mRNA codon sequence during transcription, which may change the amino acid sequence during translation. This can result in a different protein structure or function, potentially altering the organism's phenotype if the protein is essential."
+ap,frq,sample_answer
+"AP Biology","Explain how a mutation in DNA can affect protein synthesis and potentially change a phenotype.","A mutation in DNA can alter the mRNA codon sequence during transcription, which may change the amino acid sequence during translation. This can result in a different protein structure or function, potentially altering the organism's phenotype if the protein is essential."
 
-"AP Biology: Describe how natural selection can lead to antibiotic resistance in bacteria.","Bacteria with random mutations that confer resistance survive antibiotic treatment and reproduce. Over time, the frequency of resistant individuals increases in the population due to selective pressure."
+"AP Biology","Describe how natural selection can lead to antibiotic resistance in bacteria.","Bacteria with random mutations that confer resistance survive antibiotic treatment and reproduce. Over time, the frequency of resistant individuals increases in the population due to selective pressure."
 
-"AP Calculus AB: A particle moves along a line with velocity v(t)=3t^2-6t. Find when the particle is at rest and explain what that means.","Set v(t)=0: 3t^2-6t=3t(t-2)=0, so t=0 or t=2. The particle is at rest when velocity is zero, meaning it momentarily stops before changing direction or continuing motion."
+"AP Calculus AB","A particle moves along a line with velocity v(t)=3t^2-6t. Find when the particle is at rest and explain what that means.","Set v(t)=0: 3t^2-6t=3t(t-2)=0, so t=0 or t=2. The particle is at rest when velocity is zero, meaning it momentarily stops before changing direction or continuing motion."
 
-"AP Calculus AB: Explain what the derivative of a function represents in real-world terms.","The derivative represents the instantaneous rate of change of a function. In real-world contexts, it can represent speed, growth rate, or how one quantity changes relative to another."
+"AP Calculus AB","Explain what the derivative of a function represents in real-world terms.","The derivative represents the instantaneous rate of change of a function. In real-world contexts, it can represent speed, growth rate, or how one quantity changes relative to another."
 
-"AP US Government: Explain how checks and balances limit the power of the presidency.","Checks and balances allow Congress and the Supreme Court to limit presidential power through legislation, veto overrides, judicial review, and impeachment, preventing any one branch from becoming too powerful."
+"AP US Government","Explain how checks and balances limit the power of the presidency.","Checks and balances allow Congress and the Supreme Court to limit presidential power through legislation, veto overrides, judicial review, and impeachment, preventing any one branch from becoming too powerful."
 
-"AP US Government: Describe how federalism divides power in the United States.","Federalism divides power between the national and state governments. The Constitution assigns certain powers to the federal government, reserves others for states, and shares some concurrently."
+"AP US Government","Describe how federalism divides power in the United States.","Federalism divides power between the national and state governments. The Constitution assigns certain powers to the federal government, reserves others for states, and shares some concurrently."
 
-"AP Psychology: Explain how classical conditioning can be used to treat phobias.","Classical conditioning techniques like systematic desensitization pair a feared stimulus with relaxation responses, gradually reducing the fear response over time."
+"AP Psychology","Explain how classical conditioning can be used to treat phobias.","Classical conditioning techniques like systematic desensitization pair a feared stimulus with relaxation responses, gradually reducing the fear response over time."
 
-"AP Psychology: Describe the difference between short-term memory and long-term memory.","Short-term memory holds limited information for a brief period, while long-term memory stores information indefinitely with potentially unlimited capacity."
+"AP Psychology","Describe the difference between short-term memory and long-term memory.","Short-term memory holds limited information for a brief period, while long-term memory stores information indefinitely with potentially unlimited capacity."
 
-"AP Chemistry: Explain how increasing temperature affects reaction rate using collision theory.","Increasing temperature increases particle kinetic energy, leading to more frequent and energetic collisions, which increases the likelihood that collisions exceed activation energy and form products."
+"AP Chemistry","Explain how increasing temperature affects reaction rate using collision theory.","Increasing temperature increases particle kinetic energy, leading to more frequent and energetic collisions, which increases the likelihood that collisions exceed activation energy and form products."
 
-"AP Chemistry: Describe what happens to equilibrium when a stress is applied according to Le Chatelier’s principle.","When a system at equilibrium is stressed, it shifts in a direction that reduces the stress, either favoring reactants or products until a new equilibrium is established."
+"AP Chemistry","Describe what happens to equilibrium when a stress is applied according to Le Chatelier’s principle.","When a system at equilibrium is stressed, it shifts in a direction that reduces the stress, either favoring reactants or products until a new equilibrium is established."
 
-"AP English Language: Explain how an author uses rhetorical appeals to persuade an audience.","An author uses ethos to establish credibility, pathos to appeal to emotions, and logos to use logical reasoning, often combining them to strengthen persuasive impact."
+"AP English Language","Explain how an author uses rhetorical appeals to persuade an audience.","An author uses ethos to establish credibility, pathos to appeal to emotions, and logos to use logical reasoning, often combining them to strengthen persuasive impact."
 
-"AP Computer Science A: Explain how a for loop can be used to process elements in an array.","A for loop iterates through each index of an array, allowing the program to access and process each element systematically, such as calculating sums or searching for values."
+"AP Computer Science A","Explain how a for loop can be used to process elements in an array.","A for loop iterates through each index of an array, allowing the program to access and process each element systematically, such as calculating sums or searching for values."
 
-"AP Statistics: Explain what a p-value represents in hypothesis testing.","A p-value represents the probability of obtaining results at least as extreme as the observed data assuming the null hypothesis is true; smaller values suggest stronger evidence against the null."
+"AP Statistics","Explain what a p-value represents in hypothesis testing.","A p-value represents the probability of obtaining results at least as extreme as the observed data assuming the null hypothesis is true; smaller values suggest stronger evidence against the null."
 
-"AP World History: Explain one cause and one effect of industrialization.","One cause of industrialization was technological innovation like the steam engine. One effect was rapid urbanization as people moved to cities for factory work."
+"AP World History","Explain one cause and one effect of industrialization.","One cause of industrialization was technological innovation like the steam engine. One effect was rapid urbanization as people moved to cities for factory work."
