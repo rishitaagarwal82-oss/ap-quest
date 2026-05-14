@@ -703,7 +703,7 @@ if st.session_state.page == "frq":
     st.info(current_frq()["frq"])
 
     response = st.text_area(
-        "Write your FRQ response",
+        "Response",
         height=300,
         key="frq_answer"
     )
