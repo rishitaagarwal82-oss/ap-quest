@@ -542,6 +542,7 @@ if st.session_state.page == "dashboard":
 # =========================
 
 if st.session_state.page == "selectap":
+    st.title("Select AP Subject for FRQ Practice")
     colsFRQ = st.columns(3)
     for i, subject in enumerate(subjects):
         with colsFRQ[i % 3]:
